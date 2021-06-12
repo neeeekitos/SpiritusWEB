@@ -49,8 +49,9 @@ public class ActionServlet extends HttpServlet {
                     serialization = new AutheticateSerialization();
                     break;
                 case "disconnect":
-                    /*action = new DisconnectAction();
-                    serialization = new DisconnectSerialization();*/
+                    action = new DisconnectAction();
+                    System.out.println("disconnecting...");
+                    serialization = new DisconnectSerialization();
                     break;
                 case "createAccount":
                    /* action = new CreateAccountAction();
