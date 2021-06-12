@@ -13,21 +13,38 @@ import java.io.IOError;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
+import static javax.servlet.http.HttpServletResponse.*;
+
 public class AutheticatePersonAction extends Action {
 
     @Override
     public void execute(HttpServletRequest request) throws ServletException, IOException {
 
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession(false);
         request.setCharacterEncoding("UTF-8");
-        // Récupération des Paramètres de la Requête
+
+        // check if user has been already connected
+        if (session != null) {
+            request.setAttribute("status", SC_FORBIDDEN);
+            return;
+        }
+
+
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
-        // Instanciation de la classe de Service
+        // Fetching user account
         AccountService service = (AccountService) ServiceFactory.buildService("HR");
         Person person = service.authenticatePerson(login, password);
 
-        request.setAttribute("person", person);
+        if (person != null) {
+            request.setAttribute("person", person);
+            request.setAttribute("status", SC_OK);
+            session = request.getSession(true);
+            session.setAttribute("user", login);
+        } else {
+            request.setAttribute("status", SC_UNAUTHORIZED);
+            System.out.println("Invalid user's credentials");
+        }
     }
 }
