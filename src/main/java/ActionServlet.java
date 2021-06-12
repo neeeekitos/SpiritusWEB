@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.mycompany.spiritus.dao.JpaUtil;
 import action.AutheticatePersonAction;
+import serialization.AutheticateSerialization;
 import serialization.Serialization;
 
 /**
@@ -28,7 +29,9 @@ public class ActionServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+/*
         HttpSession session = request.getSession(true);
+*/
         request.setCharacterEncoding("UTF-8");
 
         String todo = request.getParameter("todo");
@@ -38,15 +41,17 @@ public class ActionServlet extends HttpServlet {
 
         if (todo != null) {
             switch (todo) {
-                case "authetifyClient":
+                case "authenticate":
                     action = new AutheticatePersonAction();
-                    serialization = new PersonSerialization();
+                    serialization = new AutheticateSerialization();
                     break;
                 case "disconnect":
-                    action = new DisconnectAction();
-                    serialization = new DisconnectSerialization();
+                    /*action = new DisconnectAction();
+                    serialization = new DisconnectSerialization();*/
                     break;
-                case ""
+                case "createAccount":
+                   /* action = new CreateAccountAction();
+                    serialization = new CreateAccountSerialization();*/
                 case "...":
                     break;
             }
@@ -55,8 +60,10 @@ public class ActionServlet extends HttpServlet {
         if (action != null) {
             action.execute(request);
             serialization.serialize(request, response);
+            System.out.println("yooooo");
         }
         else {
+            System.out.println("error ");
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Erreur dans les paramètres de la requête");
         }
 
