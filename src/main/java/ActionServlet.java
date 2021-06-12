@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.mycompany.spiritus.dao.JpaUtil;
+import action.AutheticatePersonAction;
 import serialization.Serialization;
 
 /**
@@ -38,13 +39,14 @@ public class ActionServlet extends HttpServlet {
         if (todo != null) {
             switch (todo) {
                 case "authetifyClient":
-                    action = new AuthentifyPersonAction();
+                    action = new AutheticatePersonAction();
                     serialization = new PersonSerialization();
                     break;
                 case "disconnect":
                     action = new DisconnectAction();
                     serialization = new DisconnectSerialization();
                     break;
+                case ""
                 case "...":
                     break;
             }
@@ -52,7 +54,7 @@ public class ActionServlet extends HttpServlet {
 
         if (action != null) {
             action.execute(request);
-            serialisation.serialize(request, response);
+            serialization.serialize(request, response);
         }
         else {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Erreur dans les paramètres de la requête");
