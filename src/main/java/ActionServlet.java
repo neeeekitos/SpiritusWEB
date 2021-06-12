@@ -13,9 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import action.DisconnectAction;
 import com.mycompany.spiritus.dao.JpaUtil;
 import action.AutheticatePersonAction;
 import serialization.AutheticateSerialization;
+import serialization.DisconnectSerialization;
+import serialization.PersonSerialization;
 import serialization.Serialization;
 
 /**
@@ -53,6 +56,7 @@ public class ActionServlet extends HttpServlet {
                    /* action = new CreateAccountAction();
                     serialization = new CreateAccountSerialization();*/
                 case "...":
+                default:
                     break;
             }
         }
