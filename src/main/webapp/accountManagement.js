@@ -1,16 +1,23 @@
 (function(namespace, $,  undefined) {
 
-    $(document).ready(() => {
+    namespace.updateAccountState = () => {
         if (sessionStorage.getItem('status') != null) {
-            $("#buttons").append("<button id=\"bouton-deconnexion\" class=\"btn btn-default\" onclick='SpiritusAccount.disconnect()'>Déconnexion</button>\n");
-        } else{
-            $("#buttons").append("<button id=\"bouton-connexion\" class=\"btn btn-default\" onclick='SpiritusAccount.connect()'>Connexion</button>\n");
+            $("#account-management").append("<li id=\"signout-button\" class=\"nav-item btn active\">\n" +
+                "                    <a id='disconnect-link' class=\"nav-link\" href=\"#\" onclick=\"SpiritusAccount.disconnect();return false;\">Sign out</a>\n" +
+                "                </li>\n");
+            $('#signup-button').remove();
+            $('#signin-button').remove();
 
-            $("#menu").append("<li>\n" +
-                "                    <a class=\"dropdown-item\" href=\"#\">Login</a>\n" +
+        } else{
+            $("#account-management").append("<li id=\"signup-button\" class=\"nav-item btn active\">\n" +
+                "                    <a class=\"nav-link\" href=\"createAccount.html\">Sign up</a>\n" +
+                "                </li>\n" +
+                "                <li id=\"signin-button\" class=\"nav-item btn btn-success active\">\n" +
+                "                    <a class=\"nav-link\" href=\"login.html\">Sign in</a>\n" +
                 "                </li>");
+            $('#signout-button').remove();
         }
-    });
+    };
 
     namespace.disconnect = () => { // Fonction appelée lors du clic sur le bouton
 
@@ -25,10 +32,14 @@
             },
             dataType: 'json',
             complete: function(xhr, textStatus) {
-                $('#notification').html("Vous êtes déconnecté"); // Message pour le paragraphe de notification
-                $("#buttons").append("<button id=\"bouton-connexion\" onclick='SpiritusAccount.connect()'>Connexion</button>\n");
-                $('#bouton-deconnexion').remove();
-                sessionStorage.removeItem('status');
+                console.log(xhr.status);
+                if (xhr.status === 200) {
+                    alert("Vous êtes déconnecté"); // Message pour le paragraphe de notification
+                    sessionStorage.removeItem('status');
+                    namespace.updateAccountState();
+                } else {
+                    alert("Erreur de déconnexion"); // Message pour le paragraphe de notification
+                }
             }
         })
     };
@@ -52,23 +63,26 @@
                 password: champPassword
             },
             dataType: 'json',
-        })
-        .done( function (response) {
-            console.log('Response',response); // LOG dans Console Javascript
-            $('#notification').html("Connexion avec succès"); // Message pour le paragraphe de notification
-            $("#buttons").append("<button id=\"bouton-deconnexion\" onclick='SpiritusAccount.disconnect()'>Déconnexion</button>\n");
-            $('#bouton-connexion').remove();
-            sessionStorage.setItem('status','loggedIn');
-        })
-        .fail( function (error) {
-            if (error.status === 403) {
-                $('#notification').html("Vous êtes déjà connécté");
-            }
+            success: function(data, textStatus, xhr) {
+                console.log(arguments);
+                console.log(xhr.status);
+                if (xhr.status === 200) {
+                    console.log('Response',data); // LOG dans Console Javascript
+                    $('#notification').html("Connexion avec succès"); // Message pour le paragraphe de notification
+                    sessionStorage.setItem('status','loggedIn');
+                    namespace.updateAccountState();
+                    window.location = './profile.html';
+                }
+            },
+            complete: function(xhr, textStatus) {
+                console.log(xhr.status);
+                if (xhr.status === 403) {
+                    $('#notification').html("Vous êtes déjà connécté");
+                }
 
-            if (error.status === 401)
-                $('#notification').html("Mauvais login ou mot de passe");
-        })
-        .always( function () { // Fonction toujours appelée
+                if (xhr.status === 401)
+                    $('#notification').html("Mauvais login ou mot de passe");
+            }
         });
     }
 

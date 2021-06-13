@@ -7,13 +7,20 @@
             </li>
         </ul>
         <div class=" my-2 my-lg-0">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item btn active">
+            <ul id="account-management" class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <script>
+                    SpiritusAccount.updateAccountState();
+                </script>
+
+                <!--<li id="signup-button" class="nav-item btn active">
                     <a class="nav-link" href="createAccount.html">Sign up</a>
                 </li>
-                <li class="nav-item btn btn-success active">
+                <li id="signin-button" class="nav-item btn btn-success active">
                     <a class="nav-link" href="login.html">Sign in</a>
                 </li>
+                <li id="signout-button" class="nav-item btn active">
+                    <a class="nav-link" href="index.html">Sign out</a>
+                </li>-->
             </ul>
         </div>
     </div>

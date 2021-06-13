@@ -4,11 +4,14 @@
         <meta charset="UTF-8">
         <title>Connexion</title>
         <link rel="stylesheet" href="./css/mdb.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <!-- Librairie Javascript: jQuery (v3.4.1) -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="./accountManagement.js"></script>
     </head>
     <body>
+
+    <div id="navbar-custom"></div>
 
         <h1>Connexion</h1>
 
@@ -44,8 +47,7 @@
 
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
-                        <div id="buttons">
-                        </div>
+                        <button id="bouton-connexion" class="btn btn-default" onclick='SpiritusAccount.connect()'>Connexion</button>
                         <p id="notification">Veuillez saisir votre identifiant (adresse mail) et votre mot de passe.</p>
 
                     </div>
