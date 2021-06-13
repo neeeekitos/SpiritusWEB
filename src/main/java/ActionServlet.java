@@ -13,13 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import action.CreateAccountAction;
 import action.DisconnectAction;
 import com.mycompany.spiritus.dao.JpaUtil;
 import action.AutheticatePersonAction;
-import serialization.AutheticateSerialization;
-import serialization.DisconnectSerialization;
-import serialization.PersonSerialization;
-import serialization.Serialization;
+import serialization.*;
 
 /**
  *
@@ -42,6 +40,8 @@ public class ActionServlet extends HttpServlet {
         Action action = null;
         Serialization serialization = null;
 
+        System.out.println("todo : " + todo);
+
         if (todo != null) {
             switch (todo) {
                 case "authenticate":
@@ -54,8 +54,8 @@ public class ActionServlet extends HttpServlet {
                     serialization = new DisconnectSerialization();
                     break;
                 case "createAccount":
-                   /* action = new CreateAccountAction();
-                    serialization = new CreateAccountSerialization();*/
+                    action = new CreateAccountAction();
+                    serialization = new CreateAccountSerialization();
                 case "...":
                 default:
                     break;

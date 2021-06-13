@@ -1,14 +1,47 @@
 package action;
 
+import com.mycompany.spiritus.metier.model.Client;
+import com.mycompany.spiritus.metier.service.AccountService;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class CreateAccountAction extends Action {
 
 
     @Override
     public void execute(HttpServletRequest request) throws ServletException, IOException {
+
+        try {
+            Date birthdate =new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("birthdate"));
+
+            Client client = new Client(
+                    request.getParameter("lastname"),
+                    request.getParameter("firstname"),
+                    birthdate,
+                    request.getParameter("phone"),
+                    request.getParameter("mail"),
+                    request.getParameter("password"),
+                    request.getParameter("address")
+            );
+
+            AccountService accountService = new AccountService();
+            Client clientResponse = accountService.createAccount(client);
+
+            if (clientResponse == null) {
+                request.setAttribute("success", false);
+                request.setAttribute("reason", "Account already exists");
+            } else {
+                request.setAttribute("success", true);
+            }
+        } catch (ParseException ex) {
+            request.setAttribute("success", true);
+            request.setAttribute("reason", " Error while parsing the date");
+        }
 
     }
 }

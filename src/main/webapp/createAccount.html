@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spiritus - Create your account</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="js/create_account.js"></script>
+</head>
+<body>
+
+    <div class="w-75 p-3 mx-auto">
+        <form >
+            <div class="form-group">
+                <label for="firstname">First name</label>
+                <input type="text" class="form-control" id="firstname" placeholder="First name">
+            </div>
+            <div class="form-group">
+                <label for="lastname">Last name</label>
+                <input type="text" class="form-control" id="lastname" placeholder="Last name">
+            </div>
+            <div class="form-group">
+                <label for="birthdate">Birth date</label>
+                <input type="text" class="form-control" id="birthdate" placeholder="Birth date">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone number</label>
+                <input type="text" class="form-control" id="phone" placeholder="Phone number">
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" class="form-control" id="address" placeholder="Address">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Email">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="passwordconfirm">Confirm password</label>
+                <input type="password" class="form-control" id="passwordconfirm" placeholder="Confirm password">
+            </div>
+
+            <button type="button" class="btn btn-primary" id="createbtn">Sign in</button>
+        </form>
+
+        <div id="alertMessage" class="alert">
+
+        </div>
+    </div>
+
+
+</body>
+</html>
