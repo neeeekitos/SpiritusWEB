@@ -5,6 +5,10 @@
             $("#buttons").append("<button id=\"bouton-deconnexion\" class=\"btn btn-default\" onclick='SpiritusAccount.disconnect()'>Déconnexion</button>\n");
         } else{
             $("#buttons").append("<button id=\"bouton-connexion\" class=\"btn btn-default\" onclick='SpiritusAccount.connect()'>Connexion</button>\n");
+
+            $("#menu").append("<li>\n" +
+                "                    <a class=\"dropdown-item\" href=\"#\">Login</a>\n" +
+                "                </li>");
         }
     });
 
