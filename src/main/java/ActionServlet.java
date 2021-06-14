@@ -17,6 +17,7 @@ import action.CreateAccountAction;
 import action.DisconnectAction;
 import com.mycompany.spiritus.dao.JpaUtil;
 import action.AutheticatePersonAction;
+import action.GetEmployeeHomePageInfosAction;
 import serialization.*;
 
 /**
@@ -44,7 +45,7 @@ public class ActionServlet extends HttpServlet {
 
         if (todo != null) {
             switch (todo) {
-                case "authenticate":
+                    case "authenticate":
                     action = new AutheticatePersonAction();
                     serialization = new AutheticateSerialization();
                     break;
@@ -56,6 +57,10 @@ public class ActionServlet extends HttpServlet {
                 case "createAccount":
                     action = new CreateAccountAction();
                     serialization = new CreateAccountSerialization();
+                case "getEmployeeHomePageInfosAction":{
+                    action = new GetEmployeeHomePageInfosAction();
+                    serialization = new EmployeeSerialization();
+                }
                 case "...":
                 default:
                     break;

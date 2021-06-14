@@ -9,6 +9,7 @@ action\RequestConsultationAction.class
 action\CreateAccountAction.class
 serialization\Serialization.class
 action\GetClientHomePageInfosAction.class
+serialization\EmployeeSerialization.class
 action\GetEmployeeHomePageInfosAction.class
 action\StartConsultationAction.class
 action\UpdateClientInfosAction.class
