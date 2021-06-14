@@ -2,29 +2,19 @@
 <html>
     <head>
         <title>Start Page</title>
+        <link rel="stylesheet" href="./css/mdb.dark.min.css">
+        <script src="js/mdb.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="accountManagement.js"></script>
+        <script>
+            $(function(){
+                $("#navbar-custom").load("navbar.html");
+            });
+        </script>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <a class="navbar-brand" href="#">SPIRITUS</a>
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                </ul>
-                <div class=" my-2 my-lg-0">
-                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li class="nav-item btn active">
-                            <a class="nav-link" href="createAccount.html">Sign on</a>
-                        </li>
-                        <li class="nav-item btn btn-success active">
-                            <a class="nav-link" href="login.html">Sign in</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <div id="navbar-custom"></div>
     </body>
 </html>
