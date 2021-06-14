@@ -41,6 +41,8 @@
                 if (data.success) {
                     alertBox.addClass("alert alert-success");
                     alertBox.text("Your account has been created");
+                    // TODO redirection to the home page
+                    // TODO Log the client in
                 } else {
                     alertBox.addClass("alert alert-danger");
                     alertBox.text("Account creation failed");

@@ -3,6 +3,7 @@ ActionServlet.class
 action\GetClientAstralProfileAction.class
 action\Action.class
 action\GetPredictionAction.class
+serialization\ClientHomePageInfoSerialization.class
 serialization\CreateAccountSerialization.class
 serialization\AutheticateSerialization.class
 action\RequestConsultationAction.class

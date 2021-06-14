@@ -1,7 +1,7 @@
 (function(namespace, $,  undefined) {
 
     $(document).ready(() => {
-        if (sessionStorage.getItem('status') != null) {
+        if (localStorage.getItem('status') != null) {
             $("#buttons").append("<button id=\"bouton-deconnexion\" class=\"btn btn-default\" onclick='SpiritusAccount.disconnect()'>Déconnexion</button>\n");
         } else{
             $("#buttons").append("<button id=\"bouton-connexion\" class=\"btn btn-default\" onclick='SpiritusAccount.connect()'>Connexion</button>\n");
@@ -24,9 +24,10 @@
                 $('#notification').html("Vous êtes déconnecté"); // Message pour le paragraphe de notification
                 $("#buttons").append("<button id=\"bouton-connexion\" onclick='SpiritusAccount.connect()'>Connexion</button>\n");
                 $('#bouton-deconnexion').remove();
-                sessionStorage.removeItem('status');
+                localStorage.removeItem('status');
+                localStorage.removeItem('clientId');
             }
-        })
+        });
     };
 
     namespace.connect = () => { // Fonction appelée lors du clic sur le bouton
@@ -54,7 +55,8 @@
             $('#notification').html("Connexion avec succès"); // Message pour le paragraphe de notification
             $("#buttons").append("<button id=\"bouton-deconnexion\" onclick='SpiritusAccount.disconnect()'>Déconnexion</button>\n");
             $('#bouton-connexion').remove();
-            sessionStorage.setItem('status','loggedIn');
+            localStorage.setItem('status','loggedIn');
+            localStorage.setItem('clientId', response.id);
         })
         .fail( function (error) {
             if (error.status === 403) {

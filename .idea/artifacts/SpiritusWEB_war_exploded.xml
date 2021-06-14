@@ -14,7 +14,7 @@
           <element id="module-output" name="SpiritusWEB" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: com.mycompany:Spiritus:1.0-SNAPSHOT" />
+          <element id="library" level="project" name="Maven: com.mycompany:Spiritus:2.0-SNAPSHOT" />
           <element id="library" level="project" name="Maven: com.github.javafaker:javafaker:1.0.2" />
           <element id="library" level="project" name="Maven: org.yaml:snakeyaml:android:1.23" />
           <element id="library" level="project" name="Maven: com.github.mifmif:generex:1.0.2" />
