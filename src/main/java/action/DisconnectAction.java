@@ -12,6 +12,7 @@ public class DisconnectAction extends Action {
     public void execute(HttpServletRequest request) throws ServletException, IOException {
 
         HttpSession session = request.getSession(true);
+        //TO DO check to remove user from session
         session.invalidate();
         request.setAttribute("status", SC_OK);
 

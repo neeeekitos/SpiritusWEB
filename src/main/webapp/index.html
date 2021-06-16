@@ -3,11 +3,18 @@
     <head>
         <title>Start Page</title>
         <link rel="stylesheet" href="./css/mdb.dark.min.css">
+        <link rel="stylesheet" href="./css/carousel.css">
+        <link
+                rel="stylesheet"
+                href="https://unpkg.com/swiper/swiper-bundle.min.css"
+        />
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="js/mdb.min.js"></script>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="accountManagement.js"></script>
+        <script src="slidesFetch.js"></script>
         <script>
             $(function(){
                 $("#navbar-custom").load("navbar.html");
@@ -16,5 +23,48 @@
     </head>
     <body>
         <div id="navbar-custom"></div>
+        <!-- Swiper -->
+        <section class="swiper-container loading">
+            <div id="dyn-swiper" class="swiper-wrapper">
+
+            </div>
+
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev swiper-button-white"></div>
+            <div class="swiper-button-next swiper-button-white"></div>
+        </section>
+
+        <!-- Swiper JS -->
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+        <!-- Initialize Swiper -->
+        <script>
+
+            SpiritusSlides.fetchMediums("#dyn-swiper", 5);
+
+
+            /*var imgList =  '<div class="swiper-slide" style="background-image:url(images/im2.jpeg)">\n' +
+                '    <img src="images/im2.jpeg" class="entity-img" />\n' +
+                '    <div class="content">\n' +
+                '        <p class="title" data-swiper-parallax="-30%" data-swiper-parallax-scale=".7">Test</p>\n' +
+                '        <span class="caption" data-swiper-parallax="-20%">Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>\n' +
+                '    </div>\n' +
+                '</div>';
+            imgList+= '<div class="swiper-slide" style="background-image:url(images/im1.jpeg)">\n' +
+                '    <img src="images/im1.jpeg" class="entity-img" />\n' +
+                '    <div class="content">\n' +
+                '        <p class="title" data-swiper-parallax="-30%" data-swiper-parallax-scale=".7">Test2</p>\n' +
+                '        <span class="caption" data-swiper-parallax="-20%">Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>\n' +
+                '    </div>\n' +
+                '</div>';
+
+            $('#dyn-swiper').append(imgList);*/
+
+
+            // Initialize slider
+
+        </script>
     </body>
 </html>
