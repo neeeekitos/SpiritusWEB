@@ -41,70 +41,30 @@
 
         <!-- Initialize Swiper -->
         <script>
-            // Params
-            var sliderSelector = '.swiper-container',
-                options = {
-                    init: false,
-                    loop: true,
-                    speed:800,
-                    slidesPerView: 4, // or 'auto'
-                    // spaceBetween: 10,
-                    centeredSlides : true,
-                    effect: 'coverflow', // 'cube', 'fade', 'coverflow',
-                    coverflowEffect: {
-                        rotate: 50, // Slide rotate in degrees
-                        stretch: 0, // Stretch space between slides (in px)
-                        depth: 100, // Depth offset in px (slides translate in Z axis)
-                        modifier: 1, // Effect multipler
-                        slideShadows : true, // Enables slides shadows
-                    },
-                    grabCursor: true,
-                    parallax: true,
-                    pagination: {
-                        el: '.swiper-pagination',
-                        clickable: true,
-                    },
-                    navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                    },
-                    breakpoints: {
-                        1180: {
-                            slidesPerView: 2
-                        },
-                        1023: {
-                            slidesPerView: 1,
-                            spaceBetween: 0
-                        }
-                    },
-                    // Events
-                    on: {
-                        imagesReady: function(){
-                            this.el.classList.remove('loading');
-                        }
-                    }
-                };
-            var mySwiper = new Swiper(sliderSelector, options);
+
+            SpiritusSlides.fetchMediums("#dyn-swiper", 5);
 
 
-            var imgList =  '<div class="swiper-slide" style="background-image:url(images/im2.jpeg)">\n' +
+            /*var imgList =  '<div class="swiper-slide" style="background-image:url(images/im2.jpeg)">\n' +
                 '    <img src="images/im2.jpeg" class="entity-img" />\n' +
                 '    <div class="content">\n' +
-                '        <p class="title" data-swiper-parallax="-30%" data-swiper-parallax-scale=".7">Alexis Berry</p>\n' +
+                '        <p class="title" data-swiper-parallax="-30%" data-swiper-parallax-scale=".7">Test</p>\n' +
+                '        <span class="caption" data-swiper-parallax="-20%">Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>\n' +
+                '    </div>\n' +
+                '</div>';
+            imgList+= '<div class="swiper-slide" style="background-image:url(images/im1.jpeg)">\n' +
+                '    <img src="images/im1.jpeg" class="entity-img" />\n' +
+                '    <div class="content">\n' +
+                '        <p class="title" data-swiper-parallax="-30%" data-swiper-parallax-scale=".7">Test2</p>\n' +
                 '        <span class="caption" data-swiper-parallax="-20%">Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>\n' +
                 '    </div>\n' +
                 '</div>';
 
-            $('#dyn-swiper').append(imgList);
-
-            $(function(){
-                SpiritusSlides.fetchMediums('#dyn-swiper');
-            });
-
+            $('#dyn-swiper').append(imgList);*/
 
 
             // Initialize slider
-            mySwiper.init();
+
         </script>
     </body>
 </html>
