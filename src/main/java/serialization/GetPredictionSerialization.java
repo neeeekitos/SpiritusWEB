@@ -14,7 +14,7 @@ public class GetPredictionSerialization extends Serialization {
     public void serialize(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         List<String> prediction = (List<String>) request.getAttribute("predictions");
-        
+        int status = (int) request.getAttribute("status");
         JsonObject container = new JsonObject();
 
         if (prediction != null) {
@@ -25,7 +25,7 @@ public class GetPredictionSerialization extends Serialization {
            
             container.add("predictions", predictionJson);
         }
-
+        response.setStatus(status);
         response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
         Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();

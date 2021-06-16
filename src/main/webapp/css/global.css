@@ -1,0 +1,6 @@
+.custom-container>div:first-child {
+    flex: 0 1 100%;
+}
+#prediction-help p, #prediction-help div {
+    padding : 10px;
+}

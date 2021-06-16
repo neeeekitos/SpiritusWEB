@@ -4,6 +4,7 @@
         <title>Start Page</title>
         <link rel="stylesheet" href="./css/mdb.dark.min.css">
         <link rel="stylesheet" href="./css/carousel.css">
+        <link rel="stylesheet" href="./css/scroll.css">
         <link
                 rel="stylesheet"
                 href="https://unpkg.com/swiper/swiper-bundle.min.css"
@@ -20,10 +21,28 @@
                 $("#navbar-custom").load("navbar.html");
             });
         </script>
+
     </head>
     <body>
         <div id="navbar-custom"></div>
         <!-- Swiper -->
+        <section class="home">
+            <div class="home-description lg-">
+                <h1 class="text-center text-white">SpiritUs</h1>
+                <br>
+                <p class="text-center text-white">Découvrez notre cabinet de voyance par téléphone, regroupant spirites, astrologues  ou encore cartomanciens. Les médiums qui nous accompagnent sont reconnus internationalement pour leurs talents. Chacun d'entre eux a été sélectionné pour sa précision, son honnêteté et son sérieux. Le respect de la déontologie est notre priorité.</p>
+                <br>
+                <h2 class="text-center text-white">Glissez pour découvrir nos médiums les plus populaires</h2>
+            </div>
+            <div class="indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </section>
+
         <section class="swiper-container loading">
             <div id="dyn-swiper" class="swiper-wrapper">
 

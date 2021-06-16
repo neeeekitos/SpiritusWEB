@@ -2,6 +2,7 @@ package serialization;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.mycompany.spiritus.metier.model.Astrologue;
 import com.mycompany.spiritus.metier.model.Cartomancien;
@@ -21,7 +22,9 @@ public class GetAllMediumsSerialization extends Serialization {
         List<Medium> mediumList = (List<Medium>) request.getAttribute("mediumList");
 
         JsonObject container = new JsonObject();
+        container.addProperty("nbMediums", mediumList.size());
 
+        JsonArray mediumListJson = new JsonArray();
         if (mediumList != null) {
             for (Medium medium : mediumList) {
 
@@ -37,8 +40,9 @@ public class GetAllMediumsSerialization extends Serialization {
                     mediumJson.addProperty("formation", ((Astrologue) medium).getFormation());
                     mediumJson.addProperty("promotion", ((Astrologue) medium).getPromotion());
                 }
-                container.add(medium.getId().toString(), mediumJson);
+                mediumListJson.add(mediumJson);
             }
+            container.add("mediumsList", mediumListJson);
         }
 
         response.setContentType("application/json;charset=UTF-8");
