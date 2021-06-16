@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 
-import action.Action;
+import action.*;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,11 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import action.CreateAccountAction;
-import action.DisconnectAction;
 import com.mycompany.spiritus.dao.JpaUtil;
+
 import action.AutheticatePersonAction;
 import action.GetEmployeeHomePageInfosAction;
+
 import serialization.*;
 
 /**
@@ -57,11 +58,20 @@ public class ActionServlet extends HttpServlet {
                 case "createAccount":
                     action = new CreateAccountAction();
                     serialization = new CreateAccountSerialization();
+                    break;
                 case "getEmployeeHomePageInfosAction":{
                     action = new GetEmployeeHomePageInfosAction();
                     serialization = new EmployeeSerialization();
+                    break;
                 }
-                case "...":
+                case "getPrediction":
+                    action = new GetPredictionAction();
+                    serialization = new GetPredictionSerialization();
+                    break;
+                case "getTopFiveMediums":
+                    action = new GetTopFiveMediumsAction();
+                    serialization = new GetMediumsSerialization();
+                    break;
                 default:
                     break;
             }
