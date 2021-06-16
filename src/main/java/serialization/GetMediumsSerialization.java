@@ -3,27 +3,32 @@ package serialization;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+import com.mycompany.spiritus.metier.model.Medium;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-public class GetPredictionSerialization extends Serialization {
+public class GetMediumsSerialization extends Serialization {
 
     public void serialize(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        List<String> prediction = (List<String>) request.getAttribute("predictions");
-        
+        List<Object[]> mediumList = (List<Object[]>) request.getAttribute("mediumList");
+
         JsonObject container = new JsonObject();
 
-        if (prediction != null) {
-            JsonObject predictionJson = new JsonObject();
-            predictionJson.addProperty("love", prediction.get(0));
-            predictionJson.addProperty("health", prediction.get(1));
-            predictionJson.addProperty("job", prediction.get(2));
-           
-            container.add("predictions", predictionJson);
+        if (mediumList != null) {
+            for ( Object[] value:mediumList) {
+
+                JsonObject mediumJson = new JsonObject();
+                Medium medium = (Medium) value[0];
+                mediumJson.addProperty("nom", (String) medium.getDenomination());
+                mediumJson.addProperty("nbConsultations", (String) value[0]);
+                container.add(medium.getId().toString(), mediumJson);
+
+            }
         }
 
         response.setContentType("application/json;charset=UTF-8");
