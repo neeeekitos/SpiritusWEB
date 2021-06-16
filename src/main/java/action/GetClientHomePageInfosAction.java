@@ -21,6 +21,8 @@ public class GetClientHomePageInfosAction extends Action {
         AccountService accountService = new AccountService();
         PlanningService planningService = new PlanningService();
 
+        request.setCharacterEncoding("UTF-8");
+
         Long sessionUserId = (Long)session.getAttribute("personId");
 
         System.out.println("session is new ? " + session.isNew());

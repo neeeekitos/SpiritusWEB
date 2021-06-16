@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 C:\Users\manso\Documents\NetBeansProjects\SpiritusWEB\src\main\java\action\Action.java
 C:\Users\manso\Documents\NetBeansProjects\SpiritusWEB\src\main\java\action\GetClientHomePageInfosAction.java
 C:\Users\manso\Documents\NetBeansProjects\SpiritusWEB\src\main\java\action\GetEmployeeMetricsAction.java
@@ -22,26 +21,3 @@ C:\Users\manso\Documents\NetBeansProjects\SpiritusWEB\src\main\java\action\GetPr
 C:\Users\manso\Documents\NetBeansProjects\SpiritusWEB\src\main\java\serialization\ClientHomePageInfoSerialization.java
 C:\Users\manso\Documents\NetBeansProjects\SpiritusWEB\src\main\java\action\StartConsultationAction.java
 C:\Users\manso\Documents\NetBeansProjects\SpiritusWEB\src\main\java\action\CreateAccountAction.java
-=======
-/Users/nikitaterekhov/NetBeansProjects/SpiritusWEB/src/main/java/serialization/PersonSerialization.java
-/Users/nikitaterekhov/NetBeansProjects/SpiritusWEB/src/main/java/action/AutheticatePersonAction.java
-/Users/nikitaterekhov/NetBeansProjects/SpiritusWEB/src/main/java/action/GetMediumProfileAction.java
-/Users/nikitaterekhov/NetBeansProjects/SpiritusWEB/src/main/java/ActionServlet.java
-/Users/nikitaterekhov/NetBeansProjects/SpiritusWEB/src/main/java/serialization/Serialization.java
-/Users/nikitaterekhov/NetBeansProjects/SpiritusWEB/src/main/java/action/CreateAccountAction.java
-/Users/nikitaterekhov/NetBeansProjects/SpiritusWEB/src/main/java/action/StartConsultationAction.java
-/Users/nikitaterekhov/NetBeansProjects/SpiritusWEB/src/main/java/action/GetClientInfosAction.java
-/Users/nikitaterekhov/NetBeansProjects/SpiritusWEB/src/main/java/action/GetClientHomePageInfosAction.java
-/Users/nikitaterekhov/NetBeansProjects/SpiritusWEB/src/main/java/action/GetEmployeeHomePageInfosAction.java
-/Users/nikitaterekhov/NetBeansProjects/SpiritusWEB/src/main/java/serialization/DisconnectSerialization.java
-/Users/nikitaterekhov/NetBeansProjects/SpiritusWEB/src/main/java/action/GetPredictionAction.java
-/Users/nikitaterekhov/NetBeansProjects/SpiritusWEB/src/main/java/action/FinishConsultationAction.java
-/Users/nikitaterekhov/NetBeansProjects/SpiritusWEB/src/main/java/action/GetMediumsAction.java
-/Users/nikitaterekhov/NetBeansProjects/SpiritusWEB/src/main/java/serialization/AutheticateSerialization.java
-/Users/nikitaterekhov/NetBeansProjects/SpiritusWEB/src/main/java/action/GetEmployeeMetricsAction.java
-/Users/nikitaterekhov/NetBeansProjects/SpiritusWEB/src/main/java/action/UpdateClientInfosAction.java
-/Users/nikitaterekhov/NetBeansProjects/SpiritusWEB/src/main/java/action/DisconnectAction.java
-/Users/nikitaterekhov/NetBeansProjects/SpiritusWEB/src/main/java/action/Action.java
-/Users/nikitaterekhov/NetBeansProjects/SpiritusWEB/src/main/java/action/GetClientAstralProfileAction.java
-/Users/nikitaterekhov/NetBeansProjects/SpiritusWEB/src/main/java/action/RequestConsultationAction.java
->>>>>>> Stashed changes

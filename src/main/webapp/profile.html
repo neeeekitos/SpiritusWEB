@@ -2,11 +2,13 @@
 <html>
 <head>
     <title>Profile</title>
-    <link rel="stylesheet" href="./css/mdb.dark.min.css">
+    <link rel="stylesheet" href="./css/mdb.min.css">
     <script src="js/mdb.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/profile.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="js/client_home_page.js" type="application/javascript"></script>
     <script>
         $(function(){
             $("#navbar-custom").load("navbar.html");
@@ -14,6 +16,130 @@
     </script>
 </head>
 <body>
-<div id="navbar-custom"></div>
+    <div id="navbar-custom"></div>
+    <div class="container marketing">
+        <div class="row">
+            <div class="col-lg-3">
+                <img id="zodiacImage" width="140" height="140" src="" alt="zodiac sign">
+                <h2 class="zodiacSign"></h2>
+            </div><!-- /.col-lg-4 -->
+            <div  class="col-lg-3">
+                <img id="chineeseAstralSignImage" width="140" height="140" src="./images/zodiac/chineeseAstral.png" alt="zodiac sign">
+
+                <h2 class="chineeseAstralSign">Chineese astral sign : </h2>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-3">
+                <img id="totemAnimalImage" width="140" height="140" src="./images/zodiac/totemAnimal.png" alt="zodiac sign">
+
+                <h2 class="totemAnimal">Totem animal : </h2>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-3">
+                <img id="luckyColorImage" width="140" height="140" src="./images/zodiac/color.png" alt="zodiac sign">
+
+                <h2 class="luckyColor">Totem animal : </h2>
+            </div><!-- /.col-lg-4 -->
+        </div>
+    </div>
+
+
+    <div id="content">
+        <div style="text-align: right">
+            <button id="nouvelleConsultation" class="btn btn-success">New consultation</button>
+        </div>
+        <h1>Consultation history</h1>
+        <table id="historyTable" class="table table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Advisor</th>
+                    <th scope="col">Denomination</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="modal" tabindex="-1" role="dialog">
+        <!-- Button trigger modal -->
+        <button
+                type="button"
+                class="btn btn-primary"
+                data-mdb-toggle="modal"
+                data-mdb-target="#exampleModal"
+        >
+            Launch demo modal
+        </button>
+
+        <!-- Modal -->
+        <div
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+        >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New consultation</h5>
+                        <button
+                                type="button"
+                                class="btn-close"
+                                data-mdb-dismiss="modal"
+                                aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <!-- Email input -->
+                            <div class="form-outline mb-4">
+                                <input type="email" id="form1Example1" class="form-control" />
+                                <label class="form-label" for="form1Example1">Email address</label>
+                            </div>
+
+                            <!-- Password input -->
+                            <div class="form-outline mb-4">
+                                <input type="password" id="form1Example2" class="form-control" />
+                                <label class="form-label" for="form1Example2">Password</label>
+                            </div>
+
+                            <!-- 2 column grid layout for inline styling -->
+                            <div class="row mb-4">
+                                <div class="col d-flex justify-content-center">
+                                    <!-- Checkbox -->
+                                    <div class="form-check">
+                                        <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                value=""
+                                                id="form1Example3"
+                                                checked
+                                        />
+                                        <label class="form-check-label" for="form1Example3"> Remember me </label>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <!-- Simple link -->
+                                    <a href="#!">Forgot password?</a>
+                                </div>
+                            </div>
+
+                            <!-- Submit button -->
+                            <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 </body>
 </html>

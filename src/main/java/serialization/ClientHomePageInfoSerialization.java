@@ -6,12 +6,15 @@ import com.google.gson.JsonObject;
 import com.mycompany.spiritus.metier.model.Consultation;
 
 import com.google.gson.JsonArray;
+import com.sun.tools.jconsole.JConsoleContext;
 import sun.tools.jconsole.JConsole;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class ClientHomePageInfoSerialization extends Serialization{
@@ -19,6 +22,8 @@ public class ClientHomePageInfoSerialization extends Serialization{
     @Override
     public void serialize(HttpServletRequest request, HttpServletResponse response) throws IOException {
         JsonObject container = new JsonObject();
+
+        response.setCharacterEncoding("UTF-8");
 
         if ( (Boolean) request.getAttribute("success")) { // success
             Long clientId = (Long)request.getAttribute("id");
@@ -33,10 +38,14 @@ public class ClientHomePageInfoSerialization extends Serialization{
 
             JsonArray jsonArray = new JsonArray();
             for (Consultation cons : consHistory) {
+                String formattedDate = "";
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                formattedDate = sdf.format(cons.getDate());
                 JsonObject consultationObject = new JsonObject();
                 consultationObject.addProperty("id", cons.getId());
                 consultationObject.addProperty("advisor", cons.getEmployee().getLastName());
-                consultationObject.addProperty("denomination", cons.getClass().getName());
+                consultationObject.addProperty("denomination", cons.getMedium().getDenomination());
+                consultationObject.addProperty("date", formattedDate);
                 consultationObject.addProperty("status", cons.getStatus().name());
                 jsonArray.add(consultationObject);
             }
