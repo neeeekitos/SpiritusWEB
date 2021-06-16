@@ -13,13 +13,13 @@ public class GetPredictionAction extends Action{
         
         PlanningService planningService = new PlanningService();
         
-        int love = Integer.parseInt(request.getParameter("loveNumber"));
-        int health = Integer.parseInt(request.getParameter("healthNumber"));
-        int job = Integer.parseInt(request.getParameter("jobNumber"));
+        int love = Integer.parseInt(request.getParameter("love"));
+        int health = Integer.parseInt(request.getParameter("health"));
+        int job = Integer.parseInt(request.getParameter("job"));
         
-        Client client = planningService.getClient(Long.parseLong(request.getParameter("idClient")));
-        List<String> prediction = planningService.getPrediction(client, love, health, job);
+        Client client = planningService.getClient(Long.parseLong(request.getParameter("clientId")));
+        List<String> predictions = planningService.getPrediction(client, love, health, job);
         
-        request.setAttribute("prediction", prediction);
+        request.setAttribute("predictions", predictions);
     }
 }
