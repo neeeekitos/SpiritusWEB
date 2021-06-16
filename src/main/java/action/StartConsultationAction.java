@@ -19,7 +19,7 @@ public class StartConsultationAction extends Action{
         request.setCharacterEncoding("UTF-8");
 
         // check if user has been already connected
-        if (session == null) {
+        if (session.getAttribute("user") == null) {
             request.setAttribute("status", SC_FORBIDDEN);
             return;
         }

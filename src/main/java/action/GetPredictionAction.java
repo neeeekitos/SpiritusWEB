@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.List;
 
+import static javax.servlet.http.HttpServletResponse.SC_OK;
+
 public class GetPredictionAction extends Action{
     @Override
     public void execute(HttpServletRequest request) throws ServletException, IOException {
@@ -16,7 +18,9 @@ public class GetPredictionAction extends Action{
         int love = Integer.parseInt(request.getParameter("love"));
         int health = Integer.parseInt(request.getParameter("health"));
         int job = Integer.parseInt(request.getParameter("job"));
-        
+        request.setAttribute("status", SC_OK);
+
+
         Client client = planningService.getClient(Long.parseLong(request.getParameter("clientId")));
         List<String> predictions = planningService.getPrediction(client, love, health, job);
         
