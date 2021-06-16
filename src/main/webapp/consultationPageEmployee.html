@@ -11,6 +11,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="accountManagement.js"></script>
     <script src="predictionsFetch.js"></script>
+    <script src="finishConsultation.js"></script>
     <script>
         $(function(){
             $("#navbar-custom").load("navbar.html");
@@ -26,27 +27,27 @@
                 <h1 class="text-center">Consultation en cours</h1>
             </div>
             <br>
-            <h2 class="text-center">Profil Astral de Pierre Buffière</h2>
+            <h4 class="text-center">Profil Astral de Pierre Buffière</h4>
         </div>
         <div class="d-flex">
             <div class="col-lg-3">
                 <img id="zodiacImage" width="140" height="140" src="" alt="zodiac sign">
-                <h2 class="zodiacSign"></h2>
+                <h5 class="zodiacSign"></h5>
             </div><!-- /.col-lg-4 -->
             <div  class="col-lg-3">
                 <img id="chineeseAstralSignImage" width="140" height="140" src="./images/zodiac/chineeseAstral.png" alt="zodiac sign">
 
-                <h2 class="chineeseAstralSign">Chineese astral sign : </h2>
+                <h5 class="chineeseAstralSign">Chineese astral sign : </h5>
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-3">
                 <img id="totemAnimalImage" width="140" height="140" src="./images/zodiac/totemAnimal.png" alt="zodiac sign">
 
-                <h2 class="totemAnimal">Totem animal : </h2>
+                <h5 class="totemAnimal">Totem animal : </h5>
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-3">
                 <img id="luckyColorImage" width="140" height="140" src="./images/zodiac/color.png" alt="zodiac sign">
 
-                <h2 class="luckyColor">Totem animal : </h2>
+                <h5 class="luckyColor">Totem animal : </h5>
             </div><!-- /.col-lg-4 -->
         </div>
     </div>
@@ -101,7 +102,7 @@
             <textarea class="form-control" id="comment-area" rows="3"></textarea>
         </div>
         <div style="text-align: center;">
-            <button id="putComment" class="btn btn-success" onclick="">Terminer consultation</button>
+            <button id="putComment" class="btn btn-success" onclick="SpiritiusConsultation.finishConsultation()">Terminer consultation</button>
         </div>
     </div>
 </div>

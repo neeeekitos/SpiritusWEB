@@ -77,6 +77,9 @@ public class ActionServlet extends HttpServlet {
                     action = new GetTopFiveMediumsAction();
                     serialization = new GetMediumsSerialization();
                     break;
+                case "finishConsultation" :
+                    action = new FinishConsultationAction();
+                    serialization = new FinishConsultationSerialization();
                 default:
                     break;
             }
