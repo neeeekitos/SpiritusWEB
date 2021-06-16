@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+    <link rel="stylesheet" href="./css/mdb.min.css">
+    <script src="js/mdb.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/profile.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="accountManagement.js"></script>
+    <script src="predictionsFetch.js"></script>
+    <script>
+        $(function(){
+            $("#navbar-custom").load("navbar.html");
+        });
+    </script>
+</head>
+<body>
+<div id="navbar-custom"></div>
+<div class="content">
+    <div class="modal-fullscreen">
+        <div class="container custom-container">
+            <div class="bg-light">
+                <h1 class="text-center">Consultation en cours</h1>
+            </div>
+            <br>
+            <h2 class="text-center">Profil Astral de Pierre Buffière</h2>
+        </div>
+        <div class="d-flex">
+            <div class="col-lg-3">
+                <img id="zodiacImage" width="140" height="140" src="" alt="zodiac sign">
+                <h2 class="zodiacSign"></h2>
+            </div><!-- /.col-lg-4 -->
+            <div  class="col-lg-3">
+                <img id="chineeseAstralSignImage" width="140" height="140" src="./images/zodiac/chineeseAstral.png" alt="zodiac sign">
+
+                <h2 class="chineeseAstralSign">Chineese astral sign : </h2>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-3">
+                <img id="totemAnimalImage" width="140" height="140" src="./images/zodiac/totemAnimal.png" alt="zodiac sign">
+
+                <h2 class="totemAnimal">Totem animal : </h2>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-3">
+                <img id="luckyColorImage" width="140" height="140" src="./images/zodiac/color.png" alt="zodiac sign">
+
+                <h2 class="luckyColor">Totem animal : </h2>
+            </div><!-- /.col-lg-4 -->
+        </div>
+    </div>
+</div>
+
+<div class="content bg-light pb-5">
+    <div class="row modal-fullscreen">
+        <div class="container">
+            <h2 class="text-center">Aide prediction</h2>
+            <br>
+            <div id="prediction-help">
+                <div class="d-flex">
+                    <p>Amour</p>
+                    <div id="incdec1">
+                        <input type="text" value="1" />
+                        <img class="navbar-toggler-icon" src="images/plus.png" id="up1" />
+                        <img class="navbar-toggler-icon" src="images/minus.png" id="down1" />
+                    </div>
+                    <p id="love-prediction"></p>
+                </div>
+                <div class="d-flex">
+                    <p>Santé</p>
+                    <div id="incdec2">
+                        <input type="text" value="1" />
+                        <img class="navbar-toggler-icon" src="images/plus.png" id="up2" />
+                        <img class="navbar-toggler-icon" src="images/minus.png" id="down2" />
+                    </div>
+                    <p id="health-prediction"></p>
+                </div>
+                <div class="d-flex">
+                    <p>Travail</p>
+                    <div id="incdec3">
+                        <input type="text" value="1" />
+                        <img class="navbar-toggler-icon" src="images/plus.png" id="up3" />
+                        <img class="navbar-toggler-icon" src="images/minus.png" id="down3" />
+                    </div>
+                    <p id="job-prediction"></p>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <button id="fetchPredictions" class="btn btn-success" onclick="SpiritusPredictions.fetchPredictions()">Générer des prédictions</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content bg-dark pb-5">
+    <div class="row modal-fullscreen">
+        <div class="container pb-5 ps-3">
+            <h2 class="text-center text-white">Commentaire</h2>
+            <br>
+            <textarea class="form-control" id="comment-area" rows="3"></textarea>
+        </div>
+        <div style="text-align: center;">
+            <button id="putComment" class="btn btn-success" onclick="">Terminer consultation</button>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>
