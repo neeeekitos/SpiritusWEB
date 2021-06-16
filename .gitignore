@@ -1,4 +1,5 @@
-target/
+target/*
+target
 .idea
 target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
 target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
