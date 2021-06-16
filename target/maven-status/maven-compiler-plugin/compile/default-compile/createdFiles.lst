@@ -9,6 +9,7 @@ action\StartConsultationAction.class
 action\UpdateClientInfosAction.class
 action\AutheticatePersonAction.class
 serialization\PersonSerialization.class
+serialization\RequestConsultationSerialization.class
 action\GetMediumProfileAction.class
 action\GetTopFiveMediumsAction.class
 action\GetClientInfosAction.class

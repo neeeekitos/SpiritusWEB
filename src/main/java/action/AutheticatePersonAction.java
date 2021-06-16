@@ -44,7 +44,6 @@ public class AutheticatePersonAction extends Action {
 
             session.setAttribute("user", login);
             session.setAttribute("personId", person.getId());
-            session.setAttribute("user", person.getId());
         } else {
             request.setAttribute("status", SC_UNAUTHORIZED);
             System.out.println("Invalid user's credentials");

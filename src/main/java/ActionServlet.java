@@ -36,6 +36,7 @@ public class ActionServlet extends HttpServlet {
         HttpSession session = request.getSession(true);
 */
         request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
 
         String todo = request.getParameter("todo");
 
@@ -76,6 +77,10 @@ public class ActionServlet extends HttpServlet {
                 case "getTopFiveMediums":
                     action = new GetTopFiveMediumsAction();
                     serialization = new GetMediumsSerialization();
+                    break;
+                case "requestConsultation" :
+                    action = new RequestConsultationAction();
+                    serialization = new RequestConsultationSerialization();
                     break;
                 default:
                     break;

@@ -71,7 +71,7 @@
                     $('#notification').html("Connexion avec succès"); // Message pour le paragraphe de notification
                     localStorage.setItem('status','loggedIn');
                     namespace.updateAccountState();
-                    window.location = './profile.html';
+                    window.location = './clientProfile.html';
                 }
             },
             complete: function(xhr, textStatus) {

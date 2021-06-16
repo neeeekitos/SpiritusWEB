@@ -25,8 +25,6 @@ public class GetClientHomePageInfosAction extends Action {
 
         Long sessionUserId = (Long)session.getAttribute("personId");
 
-        System.out.println("session is new ? " + session.isNew());
-
         if (sessionUserId != null) {
             Person person = accountService.getClientById(sessionUserId);
             if (! (person instanceof Client)) {
