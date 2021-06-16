@@ -13,17 +13,17 @@ public class GetPredictionSerialization extends Serialization {
 
     public void serialize(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        List<String> prediction = (List<String>) request.getAttribute("prediction");
+        List<String> prediction = (List<String>) request.getAttribute("predictions");
         
         JsonObject container = new JsonObject();
 
         if (prediction != null) {
             JsonObject predictionJson = new JsonObject();
-            predictionJson.addProperty("amour", prediction.get(0));
-            predictionJson.addProperty("sante", prediction.get(1));
-            predictionJson.addProperty("travail", prediction.get(2));
+            predictionJson.addProperty("love", prediction.get(0));
+            predictionJson.addProperty("health", prediction.get(1));
+            predictionJson.addProperty("job", prediction.get(2));
            
-            container.add("prediction", predictionJson);
+            container.add("predictions", predictionJson);
         }
 
         response.setContentType("application/json;charset=UTF-8");
