@@ -15,6 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.mycompany.spiritus.dao.JpaUtil;
+
+import action.AutheticatePersonAction;
+import action.GetEmployeeHomePageInfosAction;
+
 import serialization.*;
 
 /**
@@ -42,7 +46,7 @@ public class ActionServlet extends HttpServlet {
 
         if (todo != null) {
             switch (todo) {
-                case "authenticate":
+                    case "authenticate":
                     action = new AutheticatePersonAction();
                     serialization = new AutheticateSerialization();
                     break;
@@ -59,6 +63,19 @@ public class ActionServlet extends HttpServlet {
                     System.out.println("--- INFO ----- get client home page infos");
                     action = new GetClientHomePageInfosAction();
                     serialization = new ClientHomePageInfoSerialization();
+                    break;
+                case "getEmployeeHomePageInfosAction":{
+                    action = new GetEmployeeHomePageInfosAction();
+                    serialization = new EmployeeSerialization();
+                    break;
+                }
+                case "getPrediction":
+                    action = new GetPredictionAction();
+                    serialization = new GetPredictionSerialization();
+                    break;
+                case "getTopFiveMediums":
+                    action = new GetTopFiveMediumsAction();
+                    serialization = new GetMediumsSerialization();
                     break;
                 default:
                     break;
