@@ -8,6 +8,7 @@ import com.mycompany.spiritus.metier.service.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import static javax.servlet.http.HttpServletResponse.SC_FORBIDDEN;
 import static javax.servlet.http.HttpServletResponse.SC_OK;
@@ -38,16 +39,16 @@ public class GetEmployeeHomePageInfosAction extends Action{
             return;
         }
         else {
-            Consultation consultation = service.getPendingConsultationForEmployee(person);
-            List<Consultation> consultations = service.getEmployeeConsultationHistory(person);
+            // Call services
+            Employee emp = (Employee) person;
+            Consultation consultation = (Consultation) service.getPendingConsultationForEmployee(emp);
+            List<Consultation> consultations = (List<Consultation>) service.getEmployeeConsultationHistory(emp);
+            HashMap<Employee, Long> topFiveEmployee = (HashMap<Employee, Long>)service.getNbClientsByEmployee();
             request.setAttribute("status", SC_OK);
             request.setAttribute("person", person);
             request.setAttribute("pendingConsultation", consultation);
             request.setAttribute("historiqueConsultation", consultations);
+            request.setAttribute("topEmployee", topFiveEmployee);
         }
-        // Call services
-        
-        
-       
     }
 }

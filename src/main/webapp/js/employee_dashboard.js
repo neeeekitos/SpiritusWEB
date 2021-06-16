@@ -14,8 +14,7 @@
          dataType:'json'
      })
       .done(function(response){
-         var person = response.person;
-         console.log(person);
+         console.log('response', response);
      })
      .fail( function (error) { // Appel KO => erreur technique à gérer
          console.log('Erreur:', error); // LOG sur la Console Javascript
