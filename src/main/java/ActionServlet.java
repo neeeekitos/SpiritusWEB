@@ -70,6 +70,7 @@ public class ActionServlet extends HttpServlet {
                     action = new GetEmployeeHomePageInfosAction();
                     serialization = new EmployeeSerialization();
                     break;
+
                 case "getPrediction":
                     action = new GetPredictionAction();
                     serialization = new GetPredictionSerialization();
@@ -93,6 +94,7 @@ public class ActionServlet extends HttpServlet {
                 case "getClientInfos":
                     action = new GetClientInfosAction();
                     serialization = new GetClientInfosSerialization();
+                    break;
                 case "startConsultation" :
                     action = new StartConsultationAction();
                     serialization = new StartConsultationSerialization();
@@ -104,6 +106,10 @@ public class ActionServlet extends HttpServlet {
                 case "GetEmployeeMetrics" :
                     action = new GetEmployeeMetricsAction();
                     serialization = new GetMetricsSerialization();
+                    break;
+                case "updateClientInfos" :
+                    action = new UpdateClientInfosAction();
+                    serialization = new UpdateClientInfosSerialization();
                     break;
                 default:
                     break;

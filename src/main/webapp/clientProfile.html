@@ -1,141 +1,61 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Profile</title>
-    <link rel="stylesheet" href="./css/mdb.min.css">
-    <script src="js/mdb.min.js"></script>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/profile.css">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="accountManagement.js" type="application/javascript"></script>
-    <script src="js/client_home_page.js" type="application/javascript"></script>
-    <script>
-        $(function(){
-            $("#navbar-custom").load("navbar.html");
-        });
-    </script>
-</head>
-<body>
-    <div id="navbar-custom"></div>
-    <div class="container marketing">
-        <div class="row">
-            <div class="col-lg-3">
-                <img id="zodiacImage" width="140" height="140" src="" alt="zodiac sign">
-                <h2 class="zodiacSign"></h2>
-            </div><!-- /.col-lg-4 -->
-            <div  class="col-lg-3">
-                <img id="chineeseAstralSignImage" width="140" height="140" src="./images/zodiac/chineeseAstral.png" alt="zodiac sign">
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Spiritus - Informations client</title>
+        <link rel="stylesheet" href="./css/mdb.min.css">
 
-                <h2 class="chineeseAstralSign">Signe astrologique chinois : </h2>
-            </div><!-- /.col-lg-4 -->
-            <div class="col-lg-3">
-                <img id="totemAnimalImage" width="140" height="140" src="./images/zodiac/totemAnimal.png" alt="zodiac sign">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="js/client_profile.js"></script>
+        <script src="./accountManagement.js"></script>
 
-                <h2 class="totemAnimal">Totem animal : </h2>
-            </div><!-- /.col-lg-4 -->
-            <div class="col-lg-3">
-                <img id="luckyColorImage" width="140" height="140" src="./images/zodiac/color.png" alt="zodiac sign">
+        <script>
+            $(function () {
+                $("#navbar-custom").load("navbar.html");
+            });
+        </script>
 
-                <h2 class="luckyColor">Couleur porte bonheur : </h2>
-            </div><!-- /.col-lg-4 -->
-        </div>
-    </div>
+    </head>
+    <body>
+        <div id="navbar-custom"></div>
 
-
-    <div id="content">
-        <div style="text-align: right">
-            <button id="btn-newConsultation"
-                    class="btn btn-success"
-                    data-mdb-toggle="modal"
-                    data-mdb-target="#consultationRequestModal">Nouvelle consultation</button>
-        </div>
-        <h1>Historique de consultation</h1>
-        <table id="historyTable" class="table table-sm">
-            <thead>
-                <tr>
-                    <th scope="col">Conseiller</th>
-                    <th scope="col">Dénomination</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Status</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>  
-
-    <div
-            class="modal fade"
-            id="mediumProfileModal"
-            tabindex="-1"
-            aria-labelledby="mediumProfileModal1"
-            aria-hidden="true"
-    >
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="mediumProfilLabel">Profile du médium</h5>
-                    <button
-                            type="button"
-                            class="btn-close"
-                            data-mdb-dismiss="modal"
-                            aria-label="Close"
-                    ></button>
+        <div class="w-75 p-3 mx-auto">
+            <form >
+                <div class="form-group">
+                    <label for="firstname">First name</label>
+                    <input type="text" class="form-control" id="firstname" placeholder="Prénom">
                 </div>
-                <div class="modal-body">
-                    <img src="images/medium/medium.jpg" alt="medium" width="100%">
-                    <div class="container" id="medium-informations">
+                <div class="form-group">
+                    <label for="lastname">Last name</label>
+                    <input type="text" class="form-control" id="lastname" placeholder="Nom">
+                </div>
+                <div class="form-group">
+                    <label for="birthdate">Birth date</label>
+                    <input type="date" class="form-control" id="birthdate" placeholder="Date de naissance">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone number</label>
+                    <input type="text" class="form-control" id="phone" placeholder="Numéro de téléphone">
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" id="address" placeholder="Adresse">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Couriel électronique">
+                </div>
+                
+                <div class="text-right">
+                    <button type="button" class="btn btn-primary" id="updateClientInfos" onclick="clientProfile.updateClientInfos()">Mettre à jour mes informations</button>
+                </div>
+            </form>
 
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
-                        Close
-                    </button>
-                </div>
+            <div id="alertMessage" class="alert">
+
             </div>
         </div>
-    </div>
 
-    <div
-            class="modal fade"
-            id="consultationRequestModal"
-            tabindex="-1"
-            aria-labelledby="consultationRequestModal"
-            aria-hidden="true"
-    >
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="mediumRequestLabel">Demande de consultation</h5>
-                    <button
-                            type="button"
-                            class="btn-close"
-                            data-mdb-dismiss="modal"
-                            aria-label="Close"
-                    ></button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/consultation/plan.jpg" alt="medium" width="100%">
-                    <div class="container" id="consultationRequestForm" style="margin-top: 50px">
-                        <select id="mediums-list" class="browser-default custom-select">
-
-                        </select>
-                    </div>
-                    <div class="container" id="mediumProfileConsultationRequest">
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
-                        Fermer
-                    </button>
-                    <button id="btn-createConsultation" type="button" class="btn btn-primary">Demander une consultation</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</body>
+    </body>
 </html>

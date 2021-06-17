@@ -1,14 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title></title>
+    <title>Profile</title>
+    <link rel="stylesheet" href="./css/mdb.min.css">
+    <script src="js/mdb.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./css/profile.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="accountManagement.js" type="application/javascript"></script>
     <script src="js/client_home_page.js" type="application/javascript"></script>
+    <script>
+        $(function(){
+            $("#navbar-custom").load("navbar.html");
+        });
+    </script>
 </head>
 <body>
-    client page
+<div id="navbar-custom"></div>
+<div class="container marketing">
+    <div class="row">
+        <div class="col-lg-3">
+            <img id="zodiacImage" width="140" height="140" src="" alt="zodiac sign">
+            <h2 class="zodiacSign"></h2>
+        </div><!-- /.col-lg-4 -->
+        <div  class="col-lg-3">
+            <img id="chineeseAstralSignImage" width="140" height="140" src="./images/zodiac/chineeseAstral.png" alt="zodiac sign">
+
+            <h2 class="chineeseAstralSign">Signe astrologique chinois : </h2>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-3">
+            <img id="totemAnimalImage" width="140" height="140" src="./images/zodiac/totemAnimal.png" alt="zodiac sign">
+
+            <h2 class="totemAnimal">Totem animal : </h2>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-3">
+            <img id="luckyColorImage" width="140" height="140" src="./images/zodiac/color.png" alt="zodiac sign">
+
+            <h2 class="luckyColor">Couleur porte bonheur : </h2>
+        </div><!-- /.col-lg-4 -->
+    </div>
+</div>
+
+
+<div id="content">
+    <div style="text-align: right">
+        <button id="btn-newConsultation"
+                class="btn btn-success"
+                data-mdb-toggle="modal"
+                data-mdb-target="#consultationRequestModal">Nouvelle consultation</button>
+    </div>
+    <h1>Historique de consultation</h1>
+    <table id="historyTable" class="table table-sm">
+        <thead>
+        <tr>
+            <th scope="col">Conseiller</th>
+            <th scope="col">Dénomination</th>
+            <th scope="col">Date</th>
+            <th scope="col">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<div
+        class="modal fade"
+        id="mediumProfileModal"
+        tabindex="-1"
+        aria-labelledby="mediumProfileModal1"
+        aria-hidden="true"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mediumProfilLabel">Profile du médium</h5>
+                <button
+                        type="button"
+                        class="btn-close"
+                        data-mdb-dismiss="modal"
+                        aria-label="Close"
+                ></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/medium/medium.jpg" alt="medium" width="100%">
+                <div class="container" id="medium-informations">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div
+        class="modal fade"
+        id="consultationRequestModal"
+        tabindex="-1"
+        aria-labelledby="consultationRequestModal"
+        aria-hidden="true"
+>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mediumRequestLabel">Demande de consultation</h5>
+                <button
+                        type="button"
+                        class="btn-close"
+                        data-mdb-dismiss="modal"
+                        aria-label="Close"
+                ></button>
+            </div>
+            <div class="modal-body">
+                <img src="images/consultation/plan.jpg" alt="medium" width="100%">
+                <div class="container" id="consultationRequestForm" style="margin-top: 50px">
+                    <select id="mediums-list" class="browser-default custom-select">
+
+                    </select>
+                </div>
+                <div class="container" id="mediumProfileConsultationRequest">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
