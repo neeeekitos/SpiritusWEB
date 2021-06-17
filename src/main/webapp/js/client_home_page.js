@@ -110,17 +110,11 @@
             const consultations = data.consultationsHistory;
             const imageUrl = "./images/zodiac/" + zodiacSign + ".png";
             $("#zodiacImage").attr("src", imageUrl);
-<<<<<<< HEAD
             $(".zodiacSign").text("Signe zodiac : " + zodiacSign);
             $(".chineeseAstralSign").text("Signe astrologique chinois : " + chineeseAstral);
             $(".totemAnimal").text("Animal totem : " + totemAnimal);
             $(".luckyColor").text("Couleur porte bonheur : " + luckyColor);
-=======
-            $(".zodiacSign").text("Zodiac sign : " + zodiacSign);
-            $(".chineeseAstralSign").text("Chinese astral sign : " + chineeseAstral);
-            $(".totemAnimal").text("Totem animal : " + totemAnimal);
-            $(".luckyColor").text("Lucky color : " + luckyColor);
->>>>>>> 3d9b80a (Employee Home - JS + HTML)
+
             consultations.forEach(cons => {
                 const line = $("<tr></tr>");
                 var data = $("<td></td>");
