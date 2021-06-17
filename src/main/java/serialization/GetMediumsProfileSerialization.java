@@ -22,12 +22,17 @@ public class GetMediumsProfileSerialization extends Serialization {
 
         JsonObject container = new JsonObject();
 
+        response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+
         if (medium != null) {
 
+            response.setStatus(HttpServletResponse.SC_OK);
+
             JsonObject mediumJson = new JsonObject();
+            mediumJson.addProperty("id", medium.getId());
             mediumJson.addProperty("denomination", medium.getDenomination());
             mediumJson.addProperty("gender", medium.getGender().toString());
-            mediumJson.addProperty("gender", medium.getPresentation());
+            mediumJson.addProperty("presentation", medium.getPresentation());
             mediumJson.addProperty("mediumType", medium.getClass().getName());
 
             if (medium instanceof Spirite) {
@@ -36,7 +41,7 @@ public class GetMediumsProfileSerialization extends Serialization {
                 mediumJson.addProperty("formation", ((Astrologue) medium).getFormation());
                 mediumJson.addProperty("promotion", ((Astrologue) medium).getPromotion());
             }
-            container.add(medium.getId().toString(), mediumJson);
+            container.add("medium", mediumJson);
 
         }
 

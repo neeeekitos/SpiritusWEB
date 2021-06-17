@@ -15,12 +15,13 @@ public class GetMediumProfileAction extends Action{
         PlanningService planningService = new PlanningService();
         Long mediumId = Long.parseLong(request.getParameter("mediumId"));
 
+        System.out.println("Medium id : " + mediumId);
         Medium medium = planningService.getMedium(mediumId);
         if(medium == null){
             System.out.println("Une erreur est survenue côté serveur, le médium n'a pas pu être chargé.");
         }
         else{
-            request.setAttribute("mediumList", medium);
+            request.setAttribute("medium", medium);
         }
     }
 }

@@ -5,8 +5,19 @@
     }
 
     function showMediumModal() {
-        alert("Medium info");
         $("#modal").css("display", "block");
+        console.log($(this).attr("id"));
+        $.ajax({
+            url: "ActionServlet",
+            type: "GET",
+            data: {
+                todo : "getMediumProfile",
+                mediumId : $(this).attr("id")
+            },
+            dataType: "json"
+        }).done(function(data) {
+            console.log(data);
+        })
     }
 
     $(document).ready(function() {
@@ -44,7 +55,9 @@
                 var data = $("<td></td>");
                 data.text(cons.advisor);
                 data.addClass("mediumAdvisor");
-                data.attr("id", cons.id);
+                data.attr("id", cons.mediumId);
+                data.attr("data-mdb-target", "#mediumProfileModal");
+                data.attr("data-mdb-toggle", "modal");
                 data.click(showMediumModal);
                 line.append(data);
 

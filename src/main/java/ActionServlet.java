@@ -82,6 +82,9 @@ public class ActionServlet extends HttpServlet {
                     action = new RequestConsultationAction();
                     serialization = new RequestConsultationSerialization();
                     break;
+                case "getMediumProfile" :
+                    action = new GetMediumProfileAction();
+                    serialization = new GetMediumsProfileSerialization();
                 default:
                     break;
             }

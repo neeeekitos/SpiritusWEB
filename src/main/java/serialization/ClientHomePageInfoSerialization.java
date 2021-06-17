@@ -45,6 +45,7 @@ public class ClientHomePageInfoSerialization extends Serialization{
                 consultationObject.addProperty("id", cons.getId());
                 consultationObject.addProperty("advisor", cons.getEmployee().getLastName());
                 consultationObject.addProperty("denomination", cons.getMedium().getDenomination());
+                consultationObject.addProperty("mediumId", cons.getMedium().getId());
                 consultationObject.addProperty("date", formattedDate);
                 consultationObject.addProperty("status", cons.getStatus().name());
                 jsonArray.add(consultationObject);
