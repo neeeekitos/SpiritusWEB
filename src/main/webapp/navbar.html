@@ -1,6 +1,13 @@
 <link rel="stylesheet" href="./css/global.css">
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <!--<section id="move-area">
+            <div class='.container'>
+                <div class='eye'></div>
+                <div class='eye'></div>
+            </div>
+        </section>-->
         <a class="navbar-brand" href="index.html">SpiritUs</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <a id='home-button' class='btn btn-secondary btn-margin-left' href='index.html' role='button'>Accueil</a>
@@ -24,3 +31,20 @@
         </div>
     </div>
 </nav>
+<!--
+<script>
+    $("#move-area").mousemove(function(event) {
+        var eye = $(".eye");
+        var x = (eye.offset().left) + (eye.width() / 2);
+        var y = (eye.offset().top) + (eye.height() / 2);
+        var rad = Math.atan2(event.pageX - x, event.pageY - y);
+        var rot = (rad * (180 / Math.PI) * -1) + 180;
+        eye.css({
+            '-webkit-transform': 'rotate(' + rot + 'deg)',
+            '-moz-transform': 'rotate(' + rot + 'deg)',
+            '-ms-transform': 'rotate(' + rot + 'deg)',
+            'transform': 'rotate(' + rot + 'deg)'
+        });
+    });
+</script>
+-->

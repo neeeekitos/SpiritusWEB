@@ -31,23 +31,27 @@ public class GetEmployeeHomePageInfosAction extends Action{
         }
       
         PlanningService service = new PlanningService();
-        Person person = service.getEmployee((Long)session.getAttribute("user"));
+
+        Employee employee = service.getEmployee((Long) session.getAttribute("personId"));
+        System.out.println(employee);
         // check if person is not an employee
-        if (person instanceof Employee == false){
+        if (employee == null) {
             request.setAttribute("status", SC_UNAUTHORIZED);
             return;
         }
         else {
             // Call services
-            Employee emp = (Employee) person;
-            Consultation consultation = (Consultation) service.getPendingConsultationForEmployee(emp);
-            List<Consultation> consultations = (List<Consultation>) service.getEmployeeConsultationHistory(emp);
+            Consultation consultationPending = (Consultation) service.getPendingConsultationForEmployee(employee);
+            Consultation consultationInProgress = (Consultation) service.getInProgressConsultationForEmployee(employee);
+            List<Consultation> consultations = (List<Consultation>) service.getEmployeeConsultationHistory(employee);
             HashMap<Employee, Long> topFiveEmployee = (HashMap<Employee, Long>)service.getNbClientsByEmployee();
             request.setAttribute("status", SC_OK);
-            request.setAttribute("person", person);
-            request.setAttribute("pendingConsultation", consultation);
+            request.setAttribute("person", employee);
+            request.setAttribute("pendingConsultation", consultationPending);
+            request.setAttribute("inProgressConsultation", consultationInProgress);
             request.setAttribute("historiqueConsultation", consultations);
             request.setAttribute("topEmployee", topFiveEmployee);
+
         }
     }
 }
