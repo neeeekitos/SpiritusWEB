@@ -5,8 +5,8 @@
             $('#signup-button').remove();
             $('#signin-button').remove();
             $("#account-management").append(
-                "<a id='signout-button' class='btn btn-secondary btn-margin-left' \n"+
-                " onclick='SpiritusAccount.disconnect();return false;' role='button'>Se déconnecter</a>"
+                "<a id='signout-button' class='btn btn-secondary btn-margin-left' role='button' \n" +
+                "onclick='SpiritusAccount.disconnect();return false;'>Se déconnecter</a>"
             );
 
         } else {
