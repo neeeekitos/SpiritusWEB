@@ -106,6 +106,7 @@ package serialization;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.mycompany.spiritus.metier.model.Consultation;
 import com.mycompany.spiritus.metier.model.Employee;
@@ -118,6 +119,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
@@ -151,33 +153,42 @@ public class EmployeeSerialization extends Serialization {
             if (consultation != null) {
                 pendingConsult.addProperty("status", consultation.getStatus().toString());
                 pendingConsult.addProperty("date", consultation.getDate().toString());
+                pendingConsult.addProperty("medium_ID", consultation.getMedium().getId());
+                pendingConsult.addProperty("medium_nom", consultation.getMedium().getDenomination());
+                pendingConsult.addProperty("client_ID", consultation.getClient().getId());
+                pendingConsult.addProperty("client_nom", consultation.getClient().getFirstName() + consultation.getClient().getLastName());
                 container.add("pendingConsultation", pendingConsult);
             }
 
             JsonObject histoConsult = new JsonObject(); // Objet histoConsult
             List<Consultation> consultations = (List<Consultation>) request.getAttribute("historiqueConsultation"); // recuperation de l'attribut
+            JsonArray HistoriqueArray = new JsonArray();
             if (consultations != null) {
                 for (Consultation c : consultations) {
-                    JsonObject consult = new JsonObject(); // Objet consult
-                    consult.addProperty("status", c.getStatus().toString());
-                    consult.addProperty("date", c.getDate().toString());
-                    consult.addProperty("comment", c.getComment());
-                    consult.addProperty("medium_ID", c.getMedium().getId());
-                    consult.addProperty("medium_nom", c.getMedium().getDenomination());
-                    consult.addProperty("client_ID", c.getClient().getId());
-                    consult.addProperty("client_nom", c.getClient().getFirstName() + c.getClient().getLastName());
-                    histoConsult.add(c.getId().toString(), consult);
+                    String formattedDate = "";
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                    formattedDate = sdf.format(c.getDate());
+                    JsonObject consultationObject = new JsonObject();
+                    consultationObject.addProperty("status", c.getStatus().toString());
+                    consultationObject.addProperty("date", c.getDate().toString());
+                    consultationObject.addProperty("comment", c.getComment());
+                    consultationObject.addProperty("medium_ID", c.getMedium().getId());
+                    consultationObject.addProperty("medium_nom", c.getMedium().getDenomination());
+                    consultationObject.addProperty("client_ID", c.getClient().getId());
+                    consultationObject.addProperty("client_nom", c.getClient().getFirstName() + c.getClient().getLastName());
+                    HistoriqueArray.add(consultationObject);
                 }
-                container.add("Historique", histoConsult);
+                container.add("Historique", HistoriqueArray);
             }
-            
+
             HashMap<Employee, Long> employeeList = (HashMap<Employee, Long>) request.getAttribute("topEmployee"); // recuperation de l'attribut
             //tri HashMap
             ValueComparator comparateur = new ValueComparator(employeeList);
             TreeMap<Employee, Long> mapTriee = new TreeMap<Employee, Long>(comparateur);
             mapTriee.putAll(employeeList);
 
-            JsonObject topEmployee = new JsonObject(); // Objet liste topEmployé
+            JsonArray topEmployee = new JsonArray();
+
             Integer limite = mapTriee.size();
             if (limite >= 5) {
                 limite = 5;
@@ -188,7 +199,7 @@ public class EmployeeSerialization extends Serialization {
                 Employee objEmployee = (Employee) mapTriee.keySet().toArray()[i];
                 employee.addProperty("nom", objEmployee.getFirstName() + objEmployee.getLastName());
                 employee.addProperty("nombreConsult", employeeList.get(objEmployee).toString());
-                topEmployee.add(i.toString(), employee);
+                topEmployee.add(employee);
             }
             container.add("topEmployee", topEmployee);
 
