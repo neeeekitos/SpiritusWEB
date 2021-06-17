@@ -65,7 +65,7 @@ public class ActionServlet extends HttpServlet {
                     action = new GetClientHomePageInfosAction();
                     serialization = new ClientHomePageInfoSerialization();
                     break;
-                case "getEmployeeHomePageInfosAction":
+                case "getEmployeeHomePageInfos":
                     action = new GetEmployeeHomePageInfosAction();
                     serialization = new EmployeeSerialization();
                     break;
@@ -96,6 +96,10 @@ public class ActionServlet extends HttpServlet {
                 case "finishConsultation" :
                     action = new FinishConsultationAction();
                     serialization = new FinishConsultationSerialization();
+                    break;
+                case "GetEmployeeMetrics" :
+                    action = new GetEmployeeMetricsAction();
+                    serialization = new GetMetricsSerialization();
                     break;
                 default:
                     break;

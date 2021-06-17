@@ -32,7 +32,6 @@ public class GetEmployeeHomePageInfosAction extends Action{
       
         PlanningService service = new PlanningService();
         Person person = service.getEmployee((Long)session.getAttribute("user"));
-        System.out.println(person);
         // check if person is not an employee
         if (person instanceof Employee == false){
             request.setAttribute("status", SC_UNAUTHORIZED);

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        
+        <title>Statistiques</title>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="./css/global.css">
+        <script src="js/metrics.js"></script> 
+        <script>
+            $(function(){
+                $("#navbar-custom").load("navbar.html");
+            });
+        </script>
+    </head>
+    <body>
+        <div id="navbar-custom"></div> 
+        </br>
+        </br>
+        <h3><center>Top des Employés</center></h3>
+        <div class="table-wrapper-scroll-y my-tab-scrollbar">
+
+            <table id="topEmployee" class="table table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th class='text-center' scope="col">Employé</th>
+                        <th class='text-center' scope="col">Nombre de Client</th>
+                    </tr>
+                </thead>    
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <h3><center>Top des Mediums </center></h3> 
+        <table id="topMediums" class="table table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th class='text-center' scope="col">Medium</th>
+                    <th class='text-center' scope="col">Nombre de Client</th>
+                </tr>
+            </thead>    
+            <tbody>
+            </tbody>
+        </table>
+      
+    </body>
+</html>
