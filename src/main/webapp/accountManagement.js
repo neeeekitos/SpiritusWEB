@@ -78,7 +78,7 @@
             complete: function (xhr, textStatus) {
                 console.log(xhr.status);
                 if (xhr.status === 403) {
-                    $('#notification').html("Vous êtes déjà connécté");
+                    $('#notification').html("Vous êtes déjà connecté");
                 }
 
                 if (xhr.status === 401)
