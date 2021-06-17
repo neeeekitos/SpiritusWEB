@@ -9,6 +9,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="js/employee_dashboard.js"></script> 
+        <script src="accountManagement.js"></script>
+        <script src="startConsultation.js"></script>
         <script>
         $(function(){
             $("#navbar-custom").load("navbar.html");
@@ -20,10 +22,8 @@
         
         </br>
                 </br>
-        <div class="row align-items-center">
-            <div class="col-4">
-                <h2><center>Ma situation</center></h2>
-            </div>
+        <div class="container text-center">
+            <h2>Ma situation</h2>
         </div>
         <div class="row align-items-end">
             <div class="col-1">
@@ -39,8 +39,8 @@
         </br>
         </br>   
 
-        <h5>Consultation en cours</h5>
-        <table id="pendingConsult" class="table table-sm">
+        <h5 id="consultationStatus">Consultation en attente / en cours</h5>
+        <table id="pendingInProgressConsult" class="table table-sm">
             <thead>
                 <tr>
                     <th scope="col">Date</th>
@@ -52,6 +52,15 @@
             <tbody>
             </tbody>
         </table>
+        <div class="container text-center">
+            <button id="startConsultationButton"
+                    type="button"
+                    class="btn btn-primary"
+                    disabled
+                    onclick="SpiritiusConsultation.startConsultation()">
+                Lancer la consultation
+            </button>
+        </div>
         </br>
         </br>
         

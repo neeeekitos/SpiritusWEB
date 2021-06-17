@@ -14,7 +14,8 @@
             url: './ActionServlet',
             method: 'GET',
             data: {
-                todo: 'getTopFiveMediums'
+                todo: 'getTopMediums',
+                nbMediums: nbMediums
             },
             dataType: 'json',
             success: function(data, textStatus, xhr) {
@@ -23,6 +24,8 @@
                 if (xhr.status === 200) {
                     console.log('Response',Object.values(data)); // LOG dans Console Javascript
                     var imgList = "";
+                    nbMediums = Object.keys(data).length;
+                    console.log(nbMediums);
                     for (i = 0; i < nbMediums; i++) {
                         imgList += '<div class="swiper-slide" style="background-image:url(images/im' + (i+1) + '.jpeg)">\n' +
                             '    <img src="images/im' + (i+1) + '.jpeg" class="entity-img" />\n' +
