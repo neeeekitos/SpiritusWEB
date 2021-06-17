@@ -12,7 +12,5 @@ public class FinishConsultationSerialization extends Serialization {
     public void serialize(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int status = (int) request.getAttribute("status");
         response.setStatus(status);
-        PrintWriter out = response.getWriter();
-        out.close();
     }
 }

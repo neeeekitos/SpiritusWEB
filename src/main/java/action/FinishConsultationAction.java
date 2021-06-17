@@ -32,13 +32,14 @@ public class FinishConsultationAction extends Action{
         PlanningService planningService = (PlanningService) ServiceFactory.buildService("Planinng");
         Employee employee = planningService.getEmployee(sessionUserId);
 
-        Consultation consultation = planningService.getPendingConsultationForEmployee(employee);
+        Consultation consultation = planningService.getInProgressConsultationForEmployee(employee);
         if (consultation != null) {
             System.out.println("Pending consultation " + consultation.toString());
-            consultation.setStatus(REALIZED);
-            consultation.setComment(comment);
+            planningService.finishConsultation(consultation, comment);
             request.setAttribute("status", SC_OK);
-        } else System.out.println("Consultation nulle !!!!!!!!");
-        request.setAttribute("status", SC_BAD_REQUEST);
+        } else {
+            System.out.println("Consultation nulle !!!!!!!!");
+            request.setAttribute("status", SC_BAD_REQUEST);
+        }
     }
 }

@@ -21,15 +21,12 @@
                 comment: $('#comment-area').val()
             },
             dataType: 'json',
-            success: function (data, textStatus, xhr) {
+            complete: function (xhr, textStatus) {
                 console.log(xhr.status);
                 if (xhr.status === 200) {
                     //redirect
                     window.location = './DashEmployee.html';
                 }
-            },
-            complete: function(data, testStatus, xhr) {
-                console.log(xhr.status);
             }
         });
     };
