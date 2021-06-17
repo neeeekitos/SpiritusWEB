@@ -9,7 +9,7 @@
         document.title = title
     }
 
-    function createMediumRow(id, label, value) {
+    function createMediumRow(id, label, value, destination) {
         const element = $("<div></div>");
         element.addClass("row");
 
@@ -24,6 +24,60 @@
         element.append(paragraph);
 
         $("#medium-informations").append(element);
+    }
+
+    function createMediumTable(medium) {
+        const table = $("<table></table>");
+        table.addClass("table");
+        const elements = [];
+        const data = [];
+        const type = medium.mediumType;
+        elements.push("Type");
+        data.push(type);
+        elements.push("Dénomination");
+        data.push(medium.denomination);
+        elements.push("Présentation");
+        data.push(medium.presentation);
+        elements.push("Genre");
+        data.push(medium.gender === "MALE" ? "Homme" : "Femme");
+        switch (type) {
+            case "Astrologue":
+                elements.push("Formation");
+                data.push(medium.formation);
+                elements.push("Promotion");
+                data.push(medium.promotion);
+                break;
+            case "Spirite":
+                elements.push("Support");
+                data.push("support");
+                break;
+            default:
+                break;
+        }
+
+        const thead = $("<thead></thead>");
+        var tr = $("<tr></tr>");
+        elements.forEach(element => {
+            const tableHeader = $("<th></th>");
+            tableHeader.text(element);
+            tr.append(tableHeader);
+        });
+        thead.append(tr);
+
+        const tbody = $("<tbody></tbody>");
+        tr = $("<tr></tr>");
+        data.forEach( datium => {
+            const tableData = $("<td></td>");
+            tableData.text(datium);
+            tr.append(tableData);
+        })
+        tbody.append(tr);
+
+        table.append(thead);
+        table.append(tbody);
+
+        return table;
+
     }
 
     function showMediumModal() {
@@ -57,7 +111,7 @@
             createMediumRow(id, label, denomination);
 
             id = "gender";
-            label = "Gendre";
+            label = "genre";
             createMediumRow(id, label, gender);
 
             id = "presentation";
@@ -91,6 +145,7 @@
     }
 
     function requestConsultationForm() {
+        $("#mediumProfileConsultationRequest").html("");
         $.ajax({
             url: "ActionServlet",
             type: "GET",
@@ -169,7 +224,25 @@
         });
 
         $("#mediums-list").change(function() {
-            console.log("medium changed");
+            const mediumId = $(this).val();
+            console.log(mediumId);
+            $.ajax({
+                url: "ActionServlet",
+                type: "GET",
+                data: {
+                    todo : "getMediumProfile",
+                    mediumId : mediumId
+                },
+                dataType: "json"
+            }).done(function(data) {
+                console.log(data);
+                const medium = data.medium;
+                const destinationElement = $("#mediumProfileConsultationRequest");
+                const table = createMediumTable(medium);
+                console.log(table);
+                destinationElement.html("");
+                destinationElement.append(table);
+            })
         })
 
     });
