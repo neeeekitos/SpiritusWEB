@@ -11,12 +11,12 @@
             type: "POST",
             data: {
                 todo: "updateClientInfos",
-                firstname: $("#lastname").attr("value"),
-                lastname: $("#lastname").attr("value"),
-                phone: $("#phone").attr("value"),
-                mail: $("#email").attr("value"),
-                address: $("#address").attr("value"),
-                birthdate: $("#birthdate").attr("value")
+                firstname: $("#lastname").val(),
+                lastname: $("#firstname").val(),
+                phone: $("#phone").val(),
+                mail: $("#email").val(),
+                address: $("#address").val(),
+                birthdate: $("#birthdate").val()
             },
             dataType: "json",
             complete: function (xhr, textStatus) {
