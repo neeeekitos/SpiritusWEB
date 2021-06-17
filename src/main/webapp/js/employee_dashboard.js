@@ -14,7 +14,7 @@
          url: 'ActionServlet',
          method: 'GET',
          data:{
-             todo:'getEmployeeHomePageInfosAction'
+             todo:'getEmployeeHomePageInfos'
          },
          dataType:'json'
      })
