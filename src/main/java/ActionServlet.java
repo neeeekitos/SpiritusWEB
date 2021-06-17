@@ -65,11 +65,10 @@ public class ActionServlet extends HttpServlet {
                     action = new GetClientHomePageInfosAction();
                     serialization = new ClientHomePageInfoSerialization();
                     break;
-                case "getEmployeeHomePageInfosAction":{
+                case "getEmployeeHomePageInfosAction":
                     action = new GetEmployeeHomePageInfosAction();
                     serialization = new EmployeeSerialization();
                     break;
-                }
                 case "getPrediction":
                     action = new GetPredictionAction();
                     serialization = new GetPredictionSerialization();

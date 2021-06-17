@@ -157,7 +157,9 @@
             $("#mediums-list").html("");
             console.log(data);
             const mediumsList = data.mediumsList;
-            $("#mediums-list").append($("<option selected>Sélectionner un médium</option>"));
+            const option = $("<option selected>Sélectionner un médium</option>");
+            option.val("");
+            $("#mediums-list").append(option);
             mediumsList.forEach( medium => {
                 const denomination = medium.denomination;
                 const id = medium.id;
@@ -167,6 +169,69 @@
                 $("#mediums-list").append(option);
             })
 
+        })
+    }
+
+    function submitConsultation() {
+        const mediumId = $("#mediums-list").val();
+        console.log(mediumId);
+        if (mediumId === "") {
+            alert ("Veuillez choisir un medium");
+            return;
+        }
+        $.ajax({
+            url: "ActionServlet",
+            type: "GET",
+            data: {
+                todo : "requestConsultation",
+                mediumId : mediumId
+            },
+            dataType: "json"
+        }).done(function(data) {
+            console.log("consultation creation success");
+            const consultation = data.consultation;
+            const advisor = consultation.advisor;
+            const denomination = consultation.medium.denomination;
+            const dateString = consultation.date;
+            const status = consultation.status;
+
+            const tableRow = $("<tr></tr>");
+            var td = $("<td></td>");
+            td.text(advisor);
+            td.addClass("mediumAdvisor");
+            td.attr("id", consultation.medium.id);
+            td.attr("data-mdb-target", "#mediumProfileModal");
+            td.attr("data-mdb-toggle", "modal");
+            td.click(showMediumModal);
+            tableRow.append(td);
+
+            td = $("<td></td>");
+            td.text(denomination);
+            tableRow.append(td);
+
+            td = $("<td></td>");
+            td.text(dateString);
+            tableRow.append(td);
+
+            td = $("<td></td>");
+            td.text(status);
+            tableRow.append(td);
+
+            $("#historyTable tbody").prepend(tableRow);
+            $("#consultationRequestModal").modal('hide');
+        }).fail(function (xhr, text, error) {
+            const status = xhr.status;
+            switch (status) {
+                case 403 :
+                    alert ("Vous n'êtes pas connectés");
+                    break;
+                case 409 :
+                    alert("Conflit : vous avez déjà une consultation en cours");
+                    break;
+                case 400:
+                    alert("Mauvaise requête");
+                    break;
+            }
         })
     }
 
@@ -243,8 +308,10 @@
                 console.log(table);
                 destinationElement.html("");
                 destinationElement.append(table);
-            })
-        })
+            });
+        });
+
+        $("#btn-createConsultation").click(submitConsultation);
 
     });
 

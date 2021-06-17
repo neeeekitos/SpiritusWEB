@@ -22,20 +22,33 @@ public class RequestConsultationAction extends Action {
         AccountService accountService = new AccountService();
         HttpSession session = request.getSession();
 
-        Long mediumId = Long.parseLong(request.getParameter("mediumId"));
+        try {
 
-        Medium medium = planningService.getMedium(mediumId);
-        Long clientId = (Long)session.getAttribute("personId");
+            Long mediumId = Long.parseLong(request.getParameter("mediumId"));
 
-        Client client = accountService.getClientById(clientId);
-        if (client == null) {
-            request.setAttribute("responseStatus", HttpServletResponse.SC_FORBIDDEN);
-            request.setAttribute("message", "You are not authenticated");
-            System.out.println("No client is authenticated");
-        } else {
-            Consultation consultation = planningService.consultationRequest(medium, client);
-            request.setAttribute("responseStatus", HttpServletResponse.SC_OK);
-            request.setAttribute("consultation", consultation);
+            Medium medium = planningService.getMedium(mediumId);
+            Long clientId = (Long)session.getAttribute("personId");
+
+            if (clientId == null || accountService.getClientById(clientId) == null) {
+                request.setAttribute("status", HttpServletResponse.SC_FORBIDDEN);
+                request.setAttribute("message", "You are not authenticated");
+                System.out.println("No client is authenticated");
+            } else {
+                Client client = accountService.getClientById(clientId);
+                Consultation consultation = planningService.getClientCurrentConsultation(client);
+                System.out.println("the consultation : " + consultation);
+                if (consultation != null) {
+                    request.setAttribute("status", HttpServletResponse.SC_CONFLICT);
+                    request.setAttribute("message", "There is already a pending consultation of the client");
+                } else {
+                    consultation = planningService.consultationRequest(medium, client);
+                    request.setAttribute("status", HttpServletResponse.SC_OK);
+                    request.setAttribute("consultation", consultation);
+                }
+            }
+        } catch (NumberFormatException ex) {
+            request.setAttribute("status", HttpServletResponse.SC_BAD_REQUEST);
+            request.setAttribute("message", "mediumId parameter is missing");
         }
 
     }

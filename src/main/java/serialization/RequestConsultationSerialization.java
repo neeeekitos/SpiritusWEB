@@ -18,10 +18,11 @@ public class RequestConsultationSerialization extends Serialization {
     public void serialize(HttpServletRequest request, HttpServletResponse response) throws IOException {
         JsonObject jsonObject = new JsonObject();
 
-        if ( (int)request.getAttribute("responseStatus") == HttpServletResponse.SC_FORBIDDEN) {
+        if ( (int)request.getAttribute("status") != HttpServletResponse.SC_OK) {
             jsonObject.addProperty("success", false);
             jsonObject.addProperty("message", (String)request.getAttribute("message"));
         } else {
+            jsonObject.addProperty("success", true);
             Consultation consultation = (Consultation)request.getAttribute("consultation");
             Medium medium = consultation.getMedium();
 
@@ -38,6 +39,7 @@ public class RequestConsultationSerialization extends Serialization {
             mediumJson.addProperty("denomination", medium.getDenomination());
             mediumJson.addProperty("presentation", medium.getPresentation());
             mediumJson.addProperty("gender", medium.getGender().name());
+            mediumJson.addProperty("id", medium.getId());
 
             if (medium instanceof Spirite) {
                 mediumJson.addProperty("type", "spirite");
@@ -53,17 +55,20 @@ public class RequestConsultationSerialization extends Serialization {
 
             consultationJson.addProperty("date", formattedDate);
             consultationJson.addProperty("status", consultation.getStatus().name());
+            consultationJson.addProperty("advisor", consultation.getEmployee().getLastName());
             consultationJson.add("medium", mediumJson);
 
             jsonObject.add("consultation", consultationJson);
 
         }
 
-        response.setStatus((int)request.getAttribute("responseStatus"));
+        System.out.println("response status consultation request : " + (int)request.getAttribute("status"));
+        response.setStatus((int)request.getAttribute("status"));
+        response.setContentType("application/json;charset=UTF-8");
 
         PrintWriter out = response.getWriter();
         Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
-        gson.toJson(jsonObject);
+        gson.toJson(jsonObject, out);
         out.close();
     }
 
