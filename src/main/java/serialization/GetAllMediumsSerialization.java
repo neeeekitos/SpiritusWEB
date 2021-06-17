@@ -29,16 +29,21 @@ public class GetAllMediumsSerialization extends Serialization {
             for (Medium medium : mediumList) {
 
                 JsonObject mediumJson = new JsonObject();
+                mediumJson.addProperty("id", medium.getId());
                 mediumJson.addProperty("denomination", medium.getDenomination());
                 mediumJson.addProperty("gender", medium.getGender().toString());
                 mediumJson.addProperty("gender", medium.getPresentation());
                 mediumJson.addProperty("mediumType", medium.getClass().getName());
 
                 if (medium instanceof Spirite) {
+                    mediumJson.addProperty("mediumType", "Spirite");
                     mediumJson.addProperty("support", ((Spirite) medium).getSupport());
                 } else if (medium instanceof Astrologue) {
+                    mediumJson.addProperty("mediumType", "Astrologue");
                     mediumJson.addProperty("formation", ((Astrologue) medium).getFormation());
                     mediumJson.addProperty("promotion", ((Astrologue) medium).getPromotion());
+                } else {
+                    mediumJson.addProperty("mediumType", "Catomancien");
                 }
                 mediumListJson.add(mediumJson);
             }

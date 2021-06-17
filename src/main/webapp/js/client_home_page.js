@@ -90,6 +90,31 @@
         })
     }
 
+    function requestConsultationForm() {
+        $.ajax({
+            url: "ActionServlet",
+            type: "GET",
+            data: {
+                todo : "getAllMediumsSerialization"
+            },
+            dataType: "json"
+        }).done (function(data) {
+            $("#mediums-list").html("");
+            console.log(data);
+            const mediumsList = data.mediumsList;
+            $("#mediums-list").append($("<option selected>Sélectionner un médium</option>"));
+            mediumsList.forEach( medium => {
+                const denomination = medium.denomination;
+                const id = medium.id;
+                const option = $("<option></option>");
+                option.text(denomination);
+                option.attr("value", id);
+                $("#mediums-list").append(option);
+            })
+
+        })
+    }
+
     $(document).ready(function() {
         changePageTitle("Welcome - client name");
 
@@ -139,6 +164,12 @@
 
                 $("#historyTable tbody").append(line);
             })
+
+            $("#btn-newConsultation").click(requestConsultationForm);
+        });
+
+        $("#mediums-list").change(function() {
+            console.log("medium changed");
         })
 
     });

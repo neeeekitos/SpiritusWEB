@@ -45,7 +45,10 @@
 
     <div id="content">
         <div style="text-align: right">
-            <button id="btn-newConsultation" class="btn btn-success">Nouvelle consultation</button>
+            <button id="btn-newConsultation"
+                    class="btn btn-success"
+                    data-mdb-toggle="modal"
+                    data-mdb-target="#consultationRequestModal">Nouvelle consultation</button>
         </div>
         <h1>Historique de consultation</h1>
         <table id="historyTable" class="table table-sm">
@@ -99,13 +102,13 @@
             class="modal fade"
             id="consultationRequestModal"
             tabindex="-1"
-            aria-labelledby="mediumProfileModal1"
+            aria-labelledby="consultationRequestModal"
             aria-hidden="true"
     >
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="mediumProfilLabel">Profile du médium</h5>
+                    <h5 class="modal-title" id="mediumRequestLabel">Demande de consultation</h5>
                     <button
                             type="button"
                             class="btn-close"
@@ -114,8 +117,16 @@
                     ></button>
                 </div>
                 <div class="modal-body">
-                    <img src="images/medium/medium.jpg" alt="medium" width="100%">
-                    <div class="container" id="consultationRequestForm">
+                    <img src="images/consultation/plan.jpg" alt="medium" width="100%">
+                    <div class="container" id="consultationRequestForm" style="margin-top: 50px">
+                        <select id="mediums-list" class="browser-default custom-select">
+                            <option selected>Sélectionner un médium</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="container" id="mediumProfileConsultationRequest">
 
                     </div>
                 </div>
