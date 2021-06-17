@@ -12,7 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.mycompany.spiritus.dao.JpaUtil;
 
@@ -74,8 +73,8 @@ public class ActionServlet extends HttpServlet {
                     action = new GetPredictionAction();
                     serialization = new GetPredictionSerialization();
                     break;
-                case "getTopFiveMediums":
-                    action = new GetTopFiveMediumsAction();
+                case "getTopMediums":
+                    action = new GetTopXMediumsAction();
                     serialization = new GetMediumsSerialization();
                     break;
                 case "requestConsultation" :
@@ -93,6 +92,9 @@ public class ActionServlet extends HttpServlet {
                 case "getClientInfos":
                     action = new GetClientInfosAction();
                     serialization = new GetClientInfosSerialization();
+                case "startConsultation" :
+                    action = new StartConsultationAction();
+                    serialization = new StartConsultationSerialization();
                     break;
                 case "finishConsultation" :
                     action = new FinishConsultationAction();

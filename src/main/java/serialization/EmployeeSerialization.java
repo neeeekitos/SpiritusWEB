@@ -45,16 +45,20 @@ public class EmployeeSerialization extends Serialization {
             container.add("Employee", personJson);
 
             JsonObject pendingConsult = new JsonObject(); // Objet pendingConsult
-            Consultation consultation = (Consultation) request.getAttribute("pendingConsultation"); // recuperation de l'attribut
-            if (consultation != null) {
-                pendingConsult.addProperty("status", consultation.getStatus().toString());
-                pendingConsult.addProperty("date", consultation.getDate().toString());
-                pendingConsult.addProperty("medium_ID", consultation.getMedium().getId());
-                pendingConsult.addProperty("medium_nom", consultation.getMedium().getDenomination());
-                pendingConsult.addProperty("client_ID", consultation.getClient().getId());
-                pendingConsult.addProperty("client_nom", consultation.getClient().getFirstName() + consultation.getClient().getLastName());
-                container.add("pendingConsultation", pendingConsult);
+            Consultation consultationPending = (Consultation) request.getAttribute("pendingConsultation"); // recuperation de l'attribut
+            boolean isPending = false;
+            if (consultationPending != null) {
+                pendingConsult.addProperty("status", consultationPending.getStatus().toString());
+                pendingConsult.addProperty("date", consultationPending.getDate().toString());
+                pendingConsult.addProperty("medium_ID", consultationPending.getMedium().getId());
+                pendingConsult.addProperty("medium_nom", consultationPending.getMedium().getDenomination());
+                pendingConsult.addProperty("client_ID", consultationPending.getClient().getId());
+                pendingConsult.addProperty("client_nom", consultationPending.getClient().getFirstName() + consultationPending.getClient().getLastName());
+                isPending = true;
             }
+
+            pendingConsult.addProperty("isPending", isPending);
+            container.add("pendingOrInProgressConsultation", pendingConsult);
 
             JsonObject histoConsult = new JsonObject(); // Objet histoConsult
             List<Consultation> consultations = (List<Consultation>) request.getAttribute("historiqueConsultation"); // recuperation de l'attribut

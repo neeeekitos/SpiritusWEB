@@ -45,7 +45,7 @@
                     alert("Vous êtes déconnecté"); // Message pour le paragraphe de notification
                     localStorage.removeItem('status');
                     namespace.updateAccountState();
-                    window.location = "login.html";
+                    window.location = "./index.html";
                 } else {
                     alert("Erreur lors de la déconnexion."); // Message pour le paragraphe de notification
                 }
@@ -80,7 +80,12 @@
                     $('#notification').html("Connexion avec succès"); // Message pour le paragraphe de notification
                     localStorage.setItem('status', 'loggedIn');
                     namespace.updateAccountState();
-                    window.location = './clientProfile.html';
+                    var user = data.user;
+                    if (user === "client") {
+                        window.location = './clientProfile.html';
+                    } else if (user === "employee") {
+                        window.location = './DashEmployee.html';
+                    }
                 }
             },
             complete: function (xhr, textStatus) {

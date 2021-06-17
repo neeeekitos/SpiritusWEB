@@ -3,6 +3,8 @@ package serialization;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+import com.mycompany.spiritus.metier.model.Client;
+import com.mycompany.spiritus.metier.model.Employee;
 import com.mycompany.spiritus.metier.model.Person;
 import org.apache.http.HttpStatus;
 
@@ -31,6 +33,9 @@ public class AutheticateSerialization extends Serialization {
             personJson.addProperty("nom", person.getLastName());
             personJson.addProperty("prenom", person.getFirstName());
             personJson.addProperty("mail", person.getMail());
+
+            if (person instanceof Client) personJson.addProperty("user", "client");
+            else if (person instanceof Employee) personJson.addProperty("user", "employee");
 
             response.setStatus(status); // 200 OK
 
