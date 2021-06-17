@@ -10,4 +10,9 @@
 .btn-margin-right {
     margin-right: 2px;
 }
+.my-tab-scrollbar {
+    position: relative;
+    height: 200px;
+    overflow: auto;
+}
 
