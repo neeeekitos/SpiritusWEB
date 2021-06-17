@@ -4,20 +4,21 @@
         document.title = title
     }
 
-    function createMediumRow(id, property) {
+    function createMediumRow(id, label, value) {
         const element = $("<div></div>");
         element.addClass("row");
 
         const header = $("<h4></h4>");
-        header.text(property);
+        header.text(label);
 
         const paragraph = $("<p></p>");
         paragraph.attr("id", id);
+        paragraph.text(value);
 
         element.append(header);
         element.append(paragraph);
 
-        return element;
+        $("#medium-informations").append(element);
     }
 
     function showMediumModal() {
@@ -31,40 +32,51 @@
             },
             dataType: "json"
         }).done(function(data) {
+            var id;
+            var element;
+            var label;
             console.log(data);
+            $("#medium-informations").html("");
             const medium = data.medium;
             const denomination = medium.denomination;
             const gender = medium.gender === "MALE" ? "Homme" : "Femme";
             const presentation = medium.presentation;
-            $("#denomination").text(denomination);
-            $("#presentation").text(presentation);
-            $("#gender").text(gender);
             const mediumType = medium.mediumType;
-            var id;
-            var element;
+
+            id = "mediumType";
+            label = "Type";
+            createMediumRow(id, label, mediumType);
+
+            id = "denomination";
+            label = "Dénomination";
+            createMediumRow(id, label, denomination);
+
+            id = "gender";
+            label = "Gendre";
+            createMediumRow(id, label, gender);
+
+            id = "presentation";
+            label = "Présentation";
+            createMediumRow(id, label, presentation);
+
             switch (mediumType) {
                 case "Spirite" :
                     id = "support";
+                    label = "Support";
                     const support = medium.support;
-                    element = createMediumRow(id, "Support");
-                    element.children("#" + id).text(support);
-                    $("#medium-informations").append(element);
+                    createMediumRow(id, label, support);
                     break;
                 case "Astrologue":
                     const formation = medium.formation;
                     const promotion = medium.promotion;
 
                     id = "formation";
-                    element = createMediumRow(id, "Formation");
-                    element.children("#" + id).text(formation);
-                    $("#medium-informations").append(element);
+                    label = "Formation";
+                    createMediumRow(id, label, formation);
 
                     id = "promotion";
-                    element = createMediumRow(id, "Promotion");
-                    element.children("#" + id).text(promotion);
-                    $("#medium-informations").append(element);
-                    break;
-                case "Cartomancien":
+                    label = "Promotion";
+                    createMediumRow(id, label, promotion);
 
                     break;
                 default:
