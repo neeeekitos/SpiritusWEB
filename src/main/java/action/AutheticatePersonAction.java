@@ -20,14 +20,15 @@ public class AutheticatePersonAction extends Action {
     @Override
     public void execute(HttpServletRequest request) throws ServletException, IOException {
 
-        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession();
         request.setCharacterEncoding("UTF-8");
 
         // check if user has been already connected
-        if (session != null) {
+        if (session.getAttribute("user") != null) {
             request.setAttribute("status", SC_FORBIDDEN);
             return;
         }
+
 
 
         String login = request.getParameter("login");

@@ -1,5 +1,7 @@
 (function (namespace, $, undefined) {
 
+
+
     namespace.updateAccountState = () => {
         console.log("PATH NAME : " + window.location.pathname);
         if (localStorage.getItem('status') != null) {
@@ -99,5 +101,9 @@
             }
         });
     }
+
+    $(document).ready(function() {
+        namespace.updateAccountState();
+    });
 
 })(window.SpiritusAccount = window.SpiritusAccount || {}, jQuery)
