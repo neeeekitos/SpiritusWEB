@@ -150,7 +150,7 @@
             url: "ActionServlet",
             type: "GET",
             data: {
-                todo : "getAllMediumsSerialization"
+                todo : "getAllMediums"
             },
             dataType: "json"
         }).done (function(data) {
@@ -194,6 +194,7 @@
             $(".chineeseAstralSign").text("Signe astrologique chinois : " + chineeseAstral);
             $(".totemAnimal").text("Animal totem : " + totemAnimal);
             $(".luckyColor").text("Couleur porte bonheur : " + luckyColor);
+
             consultations.forEach(cons => {
                 const line = $("<tr></tr>");
                 var data = $("<td></td>");

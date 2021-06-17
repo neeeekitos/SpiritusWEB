@@ -1,6 +1,7 @@
 (function (namespace, $, undefined) {
 
     namespace.updateAccountState = () => {
+        console.log("PATH NAME : " + window.location.pathname);
         if (localStorage.getItem('status') != null) {
             $('#signup-button').remove();
             $('#signin-button').remove();
@@ -12,10 +13,17 @@
         } else {
             $('#signout-button').remove();
 
-            $("#account-management").append(
-                "<a id='signup-button' class='btn btn-secondary btn-margin-right' href='createAccount.html' role='button'>S'inscrire</a>\n" +
-                "<a id='signin-button' class='btn btn-primary btn-margin-left' href='login.html' role='button'>Se connecter</a>"
-            );
+            if (window.location.pathname != "/SpiritusWEB/login.html") {
+                $("#account-management").append(
+                    "<a id='signin-button' class='btn btn-primary btn-margin-left' href='login.html' role='button'>Se connecter</a>"
+                );
+            } else if (window.location.pathname != "/SpiritusWEB/createAccount.html") {
+                $("#account-management").append(
+                    "<a id='signup-button' class='btn btn-secondary btn-margin-right' href='createAccount.html' role='button'>S'inscrire</a>"
+                );
+            }
+
+
         }
     };
 
@@ -78,7 +86,7 @@
             complete: function (xhr, textStatus) {
                 console.log(xhr.status);
                 if (xhr.status === 403) {
-                    $('#notification').html("Vous êtes déjà connécté");
+                    $('#notification').html("Vous êtes déjà connecté");
                 }
 
                 if (xhr.status === 401)

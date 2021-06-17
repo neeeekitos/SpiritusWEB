@@ -1,9 +1,5 @@
+
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -12,9 +8,66 @@ and open the template in the editor.
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script src="js/employee_dashboard.js"></script>     
+        <script src="js/employee_dashboard.js"></script> 
+        <script>
+        $(function(){
+            $("#navbar-custom").load("navbar.html");
+        });
+    </script>
     </head>
     <body>
-        <div>Dashboard employé</div>
+        <div id="navbar-custom"></div>
+        
+        </br>
+                </br>
+        <div class="row align-items-center">
+            <div class="col-4">
+                <h2><center>Ma situation</center></h2>
+            </div>
+        </div>
+        <div class="row align-items-end">
+            <div class="col-1">
+                
+            </div>
+            <div class="col-4">
+                <h6 class="available"></h6>
+            </div>
+            <div class="col-2">
+                <img id="available" width="50" height="50" src="" alt="img_available">
+            </div>
+        </div>
+        </br>
+        </br>   
+
+        <h5>Consultation en cours</h5>
+        <table id="pendingConsult" class="table table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Medium</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        </br>
+        </br>
+        
+        <h5>Historique de consultation</h5>
+        <table id="historiqueConsult" class="table table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Medium</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Commentaire</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
     </body>
 </html>
