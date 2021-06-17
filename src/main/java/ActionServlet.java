@@ -38,6 +38,8 @@ public class ActionServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
+        response.setContentType("application/json;charset=UTF-8");
+
         String todo = request.getParameter("todo");
 
         Action action = null;
