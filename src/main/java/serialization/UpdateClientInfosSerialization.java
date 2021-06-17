@@ -27,6 +27,7 @@ public class UpdateClientInfosSerialization extends Serialization {
         container.addProperty("success", (Boolean) request.getAttribute("success"));
         container.addProperty("reason", (String) request.getAttribute("reason"));
 
+        response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
         Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
         gson.toJson(container, out);
