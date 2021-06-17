@@ -33,13 +33,16 @@ public class GetMediumsProfileSerialization extends Serialization {
             mediumJson.addProperty("denomination", medium.getDenomination());
             mediumJson.addProperty("gender", medium.getGender().toString());
             mediumJson.addProperty("presentation", medium.getPresentation());
-            mediumJson.addProperty("mediumType", medium.getClass().getName());
 
             if (medium instanceof Spirite) {
                 mediumJson.addProperty("support", ((Spirite) medium).getSupport());
+                mediumJson.addProperty("mediumType", "Spirite");
             } else if (medium instanceof Astrologue) {
                 mediumJson.addProperty("formation", ((Astrologue) medium).getFormation());
                 mediumJson.addProperty("promotion", ((Astrologue) medium).getPromotion());
+                mediumJson.addProperty("mediumType", "Astrologue");
+            } else {
+                mediumJson.addProperty("mediumType", "Cartomancien");
             }
             container.add("medium", mediumJson);
 

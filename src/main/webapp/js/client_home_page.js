@@ -4,8 +4,23 @@
         document.title = title
     }
 
+    function createMediumRow(id, property) {
+        const element = $("<div></div>");
+        element.addClass("row");
+
+        const header = $("<h4></h4>");
+        header.text(property);
+
+        const paragraph = $("<p></p>");
+        paragraph.attr("id", id);
+
+        element.append(header);
+        element.append(paragraph);
+
+        return element;
+    }
+
     function showMediumModal() {
-        $("#modal").css("display", "block");
         console.log($(this).attr("id"));
         $.ajax({
             url: "ActionServlet",
@@ -17,6 +32,44 @@
             dataType: "json"
         }).done(function(data) {
             console.log(data);
+            const medium = data.medium;
+            const denomination = medium.denomination;
+            const gender = medium.gender === "MALE" ? "Homme" : "Femme";
+            const presentation = medium.presentation;
+            $("#denomination").text(denomination);
+            $("#presentation").text(presentation);
+            $("#gender").text(gender);
+            const mediumType = medium.mediumType;
+            var id;
+            var element;
+            switch (mediumType) {
+                case "Spirite" :
+                    id = "support";
+                    const support = medium.support;
+                    element = createMediumRow(id, "Support");
+                    element.children("#" + id).text(support);
+                    $("#medium-informations").append(element);
+                    break;
+                case "Astrologue":
+                    const formation = medium.formation;
+                    const promotion = medium.promotion;
+
+                    id = "formation";
+                    element = createMediumRow(id, "Formation");
+                    element.children("#" + id).text(formation);
+                    $("#medium-informations").append(element);
+
+                    id = "promotion";
+                    element = createMediumRow(id, "Promotion");
+                    element.children("#" + id).text(promotion);
+                    $("#medium-informations").append(element);
+                    break;
+                case "Cartomancien":
+
+                    break;
+                default:
+                    break;
+            }
         })
     }
 
