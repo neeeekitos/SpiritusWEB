@@ -85,6 +85,9 @@ public class ActionServlet extends HttpServlet {
                 case "getMediumProfile" :
                     action = new GetMediumProfileAction();
                     serialization = new GetMediumsProfileSerialization();
+                case "finishConsultation" :
+                    action = new FinishConsultationAction();
+                    serialization = new FinishConsultationSerialization();
                 default:
                     break;
             }
