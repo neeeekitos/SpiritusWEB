@@ -27,7 +27,7 @@
             <div  class="col-lg-3">
                 <img id="chineeseAstralSignImage" width="140" height="140" src="./images/zodiac/chineeseAstral.png" alt="zodiac sign">
 
-                <h2 class="chineeseAstralSign">Chineese astral sign : </h2>
+                <h2 class="chineeseAstralSign">Signe astrologique chinois : </h2>
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-3">
                 <img id="totemAnimalImage" width="140" height="140" src="./images/zodiac/totemAnimal.png" alt="zodiac sign">
@@ -37,7 +37,7 @@
             <div class="col-lg-3">
                 <img id="luckyColorImage" width="140" height="140" src="./images/zodiac/color.png" alt="zodiac sign">
 
-                <h2 class="luckyColor">Totem animal : </h2>
+                <h2 class="luckyColor">Couleur porte bonheur : </h2>
             </div><!-- /.col-lg-4 -->
         </div>
     </div>
@@ -45,14 +45,14 @@
 
     <div id="content">
         <div style="text-align: right">
-            <button id="nouvelleConsultation" class="btn btn-success">Nouvelle consultation</button>
+            <button id="btn-newConsultation" class="btn btn-success">Nouvelle consultation</button>
         </div>
-        <h1>Consultation history</h1>
+        <h1>Historique de consultation</h1>
         <table id="historyTable" class="table table-sm">
             <thead>
                 <tr>
-                    <th scope="col">Advisor</th>
-                    <th scope="col">Denomination</th>
+                    <th scope="col">Conseiller</th>
+                    <th scope="col">Dénomination</th>
                     <th scope="col">Date</th>
                     <th scope="col">Status</th>
                 </tr>
@@ -83,18 +83,40 @@
                 <div class="modal-body">
                     <img src="images/medium/medium.jpg" alt="medium" width="100%">
                     <div class="container" id="medium-informations">
-                        <div class="row">
-                            <h4> Dénomination </h4>
-                            <p id="denomination">  </p>
-                        </div>
-                        <div class="row">
-                            <h4> Présentation </h4>
-                            <p id="presentation">  </p>
-                        </div>
-                        <div class="row">
-                            <h4> Genre </h4>
-                            <p id="gender">  </p>
-                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div
+            class="modal fade"
+            id="consultationRequestModal"
+            tabindex="-1"
+            aria-labelledby="mediumProfileModal1"
+            aria-hidden="true"
+    >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="mediumProfilLabel">Profile du médium</h5>
+                    <button
+                            type="button"
+                            class="btn-close"
+                            data-mdb-dismiss="modal"
+                            aria-label="Close"
+                    ></button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/medium/medium.jpg" alt="medium" width="100%">
+                    <div class="container" id="consultationRequestForm">
+
                     </div>
                 </div>
                 <div class="modal-footer">

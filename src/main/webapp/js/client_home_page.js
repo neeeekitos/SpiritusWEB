@@ -1,5 +1,10 @@
 (function(namespace, $, undefined) {
 
+    const connected = localStorage.getItem("status");
+    if (connected !== "loggedIn") {
+        window.location = "login.html";
+    }
+
     function changePageTitle (title) {
         document.title = title
     }
@@ -87,12 +92,6 @@
 
     $(document).ready(function() {
         changePageTitle("Welcome - client name");
-        const connected = localStorage.getItem("status");
-        if (connected == "loggedIn") {
-            $('#content').append("logged in");
-        } else {
-            $('#content').append("NOT LOGGED IN");
-        }
 
         $.ajax({
             url: "ActionServlet",
@@ -111,10 +110,10 @@
             const consultations = data.consultationsHistory;
             const imageUrl = "./images/zodiac/" + zodiacSign + ".png";
             $("#zodiacImage").attr("src", imageUrl);
-            $(".zodiacSign").text("Zodiac sign : " + zodiacSign);
-            $(".chineeseAstralSign").text("Chineese astral sign : " + chineeseAstral);
-            $(".totemAnimal").text("Totem animal : " + totemAnimal);
-            $(".luckyColor").text("Lucky color : " + luckyColor);
+            $(".zodiacSign").text("Signe zodiac : " + zodiacSign);
+            $(".chineeseAstralSign").text("Signe astrologique chinois : " + chineeseAstral);
+            $(".totemAnimal").text("Animal totem : " + totemAnimal);
+            $(".luckyColor").text("Couleur porte bonheur : " + luckyColor);
             consultations.forEach(cons => {
                 const line = $("<tr></tr>");
                 var data = $("<td></td>");
