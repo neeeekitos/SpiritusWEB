@@ -24,6 +24,7 @@ public class GetMediumsSerialization extends Serialization {
 
                 JsonObject mediumJson = new JsonObject();
                 Medium medium = (Medium) value[0];
+                mediumJson.addProperty("idMedium", (Long) medium.getId());
                 mediumJson.addProperty("denomination", (String) medium.getDenomination());
                 mediumJson.addProperty("description", (String) medium.getPresentation());
                 mediumJson.addProperty("nbConsultations", (Long) value[1]);
