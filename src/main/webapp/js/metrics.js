@@ -25,6 +25,8 @@
             line.append(data_tab);
             $("#topEmployee tbody").append(line);
         }else{
+           var chartResultEmp=[];
+
            topEmployee.forEach(cons => {
                 line = $("<tr></tr>");
                 data_tab = $("<th scope='row'></th>");
@@ -41,7 +43,10 @@
                 
                 compteur = compteur+1;
                 $("#topEmployee tbody").append(line);
+                
+                chartResultEmp.push({"name":cons.nom,"y":Number(cons.nombreConsult)}); 
             })  
+            DrawChartEmp(chartResultEmp);
         }
         
         line = $("<tr></tr>");
@@ -51,6 +56,7 @@
             line.append(data_tab);
             $("#topMediums tbody").append(line);
         }else{
+           var chartResultMediums=[];
            topMediums.forEach(cons => {
                 line = $("<tr></tr>");
                 data_tab = $("<th scope='row'></th>");
@@ -67,9 +73,13 @@
                 
                 compteur = compteur+1;
                 $("#topMediums tbody").append(line);
-            })  
+                chartResultMediums.push({"name":cons.medium,"y":Number(cons.nombre)}); 
+            })
+            DrawChart(chartResultMediums);
+            
         }
-
+        
+        
      })
      .fail( function (error) { // Appel KO => erreur technique Ã  gÃ©rer
          console.log('Erreur:', error); // LOG sur la Console Javascript
@@ -80,3 +90,76 @@
 
 }) (window.MetricsPage = window.MetricsPage || {}, jQuery);
 
+function DrawChart(result){
+ $('#container').highcharts({
+     chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Répartition des meilleurs médiums'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b> {point.percentage:.0f} </b>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: ''
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.0f} '
+                    }
+                }
+            },
+            series: [{
+                name: 'Medium',
+                colorByPoint: true,
+                data: result
+            }]
+        });
+    }
+        
+     function DrawChartEmp(result){
+    $('#containerEmp').highcharts({
+        chart: {
+                   plotBackgroundColor: null,
+                   plotBorderWidth: null,
+                   plotShadow: false,
+                   type: 'pie'
+               },
+               title: {
+                   text: 'Répartition des meilleurs médiums'
+               },
+               tooltip: {
+                   pointFormat: '{series.name}: <b> {point.percentage:.0f} </b>'
+               },
+               accessibility: {
+                   point: {
+                       valueSuffix: ''
+                   }
+               },
+               plotOptions: {
+                   pie: {
+                       allowPointSelect: true,
+                       cursor: 'pointer',
+                       dataLabels: {
+                           enabled: true,
+                           format: '<b>{point.name}</b>: {point.percentage:.0f} '
+                       }
+                   }
+               },
+               series: [{
+                   name: 'Employé',
+                   colorByPoint: true,
+                   data: result
+               }]
+           });
+}

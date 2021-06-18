@@ -6,17 +6,48 @@
             const homePage = localStorage.getItem("userType") === "client" ? "client.html" : "DashEmployee.html";
             $('#signup-button').remove();
             $('#signin-button').remove();
-            $("#account-management").append(
-                "<a id='signout-button' class='btn btn-secondary btn-margin-left' role='button' \n" +
-                "href='clientProfile.html'>Profil</a>"
-            );
+
+
+            if (window.location.pathname == "/SpiritusWEB/index.html") {
+                $('#medium-button').remove();
+                $("#home-buttons").append(
+                    "   <a id='medium-button' class='btn btn-secondary btn-margin-left' href='mediums.html'\n" +
+                    "                   role='button'>Mediums</a>"
+                );
+            }
+            else if (localStorage.getItem("userType") !== "client") {
+                $('#medium-button').remove();
+            }
+
+
+
+            if(localStorage.getItem("userType") === "client") {
+                $("#account-management").append(
+                    "<a id='signout-button' class='btn btn-secondary btn-margin-left' role='button' \n" +
+                    "href='clientProfile.html'>Profil</a>"
+                );
+            }
             $("#account-management").append(
                 "<a id='signout-button' class='btn btn-secondary btn-margin-left' role='button' \n" +
                 "onclick='SpiritusAccount.disconnect();return false;'>Se déconnecter</a>"
             );
-            $("#home-buttons").append(
-                "   <a id='clientHome' class='btn btn-secondary btn-margin-left' href='" + homePage + "' role='button'>Accueil Client</a>"
-            );
+            if(localStorage.getItem("userType") === "client"){
+                $("#home-buttons").append(
+                    "   <a id='clientHome' class='btn btn-secondary btn-margin-left' href='" + homePage + "' role='button'>Accueil Client</a>"
+                );
+            }
+
+            if (window.location.pathname == "/SpiritusWEB/DashEmployee.html") {
+                $("#home-buttons").append(
+                    "   <a id='stats' class='btn btn-secondary btn-margin-left' href='metrics.html' role='button'>Statistiques</a>"
+                );
+            }
+            if (window.location.pathname == "/SpiritusWEB/metrics.html") {
+                $("#home-buttons").append(
+                    "   <a id='dashboard' class='btn btn-secondary btn-margin-left' href='DashEmployee.html' role='button'>Dashboard</a>"
+                );
+            }
+
 
         } else {
             $('#signout-button').remove();
