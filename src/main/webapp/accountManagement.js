@@ -14,6 +14,14 @@
                     "   <a id='medium-button' class='btn btn-secondary btn-margin-left' href='mediums.html'\n" +
                     "                   role='button'>Mediums</a>"
                 );
+                if(localStorage.getItem("userType") != "client") {
+                    $("#home-buttons").append(
+                    "   <a id='stats' class='btn btn-secondary btn-margin-left' href='metrics.html' role='button'>Statistiques</a>"
+                    );
+                    $("#home-buttons").append(
+                        "   <a id='dashboard' class='btn btn-secondary btn-margin-left' href='DashEmployee.html' role='button'>Dashboard</a>"
+                    );
+                }
             }
             else if (localStorage.getItem("userType") !== "client") {
                 $('#medium-button').remove();
