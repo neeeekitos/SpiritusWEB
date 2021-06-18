@@ -17,7 +17,7 @@ public class GetClientInfosAction extends Action{
         AccountService accountService = new AccountService();
         PlanningService planningService = new PlanningService();
         try {
-            Long clientId = Long.parseLong(request.getParameter("clientId"));
+            Long clientId = (Long)session.getAttribute("personId");
             Client client = accountService.getClientById(clientId);
             if (client == null) {
                 request.setAttribute("status", HttpServletResponse.SC_NOT_FOUND);

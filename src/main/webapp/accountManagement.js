@@ -1,7 +1,5 @@
 (function (namespace, $, undefined) {
 
-
-
     namespace.updateAccountState = () => {
         console.log("PATH NAME : " + window.location.pathname);
         if (localStorage.getItem('status') != null) {
@@ -88,7 +86,7 @@
                     namespace.updateAccountState();
                     var user = data.user;
                     if (user === "client") {
-                        window.location = './clientProfile.html';
+                        window.location = './client.html';
                     } else if (user === "employee") {
                         window.location = './DashEmployee.html';
                     }
