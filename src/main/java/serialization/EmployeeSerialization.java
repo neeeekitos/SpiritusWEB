@@ -88,7 +88,7 @@ public class EmployeeSerialization extends Serialization {
                     formattedDate = sdf.format(c.getDate());
                     JsonObject consultationObject = new JsonObject();
                     consultationObject.addProperty("status", c.getStatus().toString());
-                    consultationObject.addProperty("date", c.getDate().toString());
+                    consultationObject.addProperty("date", formattedDate);
                     consultationObject.addProperty("comment", c.getComment());
                     consultationObject.addProperty("medium_ID", c.getMedium().getId());
                     consultationObject.addProperty("medium_nom", c.getMedium().getDenomination());
@@ -115,7 +115,7 @@ public class EmployeeSerialization extends Serialization {
             for (Integer i = 0; i < limite; i++) {
                 JsonObject employee = new JsonObject(); // Objet consult
                 Employee objEmployee = (Employee) mapTriee.keySet().toArray()[i];
-                employee.addProperty("nom", objEmployee.getFirstName() + objEmployee.getLastName());
+                employee.addProperty("nom", objEmployee.getFirstName() +" "+ objEmployee.getLastName());
                 employee.addProperty("nombreConsult", employeeList.get(objEmployee).toString());
                 topEmployee.add(employee);
             }
