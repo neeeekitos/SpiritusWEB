@@ -8,14 +8,14 @@
             $('#signin-button').remove();
             $("#account-management").append(
                 "<a id='signout-button' class='btn btn-secondary btn-margin-left' role='button' \n" +
-                "href='clientProfile.html'>Modifier le profil</a>"
+                "href='clientProfile.html'>Profil</a>"
             );
             $("#account-management").append(
                 "<a id='signout-button' class='btn btn-secondary btn-margin-left' role='button' \n" +
                 "onclick='SpiritusAccount.disconnect();return false;'>Se déconnecter</a>"
             );
             $("#home-buttons").append(
-                "   <a id='clientHome' class='btn btn-secondary btn-margin-left' href='" + homePage + "' role='button'>Profil</a>"
+                "   <a id='clientHome' class='btn btn-secondary btn-margin-left' href='" + homePage + "' role='button'>Accueil Client</a>"
             );
 
         } else {
@@ -32,7 +32,7 @@
             }
 
 
-        }
+        }z
     };
 
     namespace.disconnect = () => { // Fonction appelée lors du clic sur le bouton
