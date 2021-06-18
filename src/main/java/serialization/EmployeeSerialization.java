@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.mycompany.spiritus.metier.model.Client;
 import com.mycompany.spiritus.metier.model.Consultation;
 import com.mycompany.spiritus.metier.model.Employee;
 import com.mycompany.spiritus.metier.model.Person;
@@ -35,6 +36,7 @@ public class EmployeeSerialization extends Serialization {
             final JsonObject container = new JsonObject(); // Objet JSON " conteneur "
 
             JsonObject personJson = new JsonObject(); // Objet InfosEmployee
+            JsonObject inProgressConsultationData = new JsonObject();
             Person person = (Person) request.getAttribute("person"); // recuperation de l'attribut
             Employee emp = (Employee) person;
             personJson.addProperty("id", emp.getId());
@@ -57,8 +59,24 @@ public class EmployeeSerialization extends Serialization {
                 isPending = true;
             }
 
+            Consultation inProgressConsultation = (Consultation) request.getAttribute("inProgressConsultation");
+            if (inProgressConsultation != null) {
+                inProgressConsultationData.addProperty("status", inProgressConsultation.getStatus().toString());
+                inProgressConsultationData.addProperty("date", inProgressConsultation.getDate().toString());
+                inProgressConsultationData.addProperty("mediumId", inProgressConsultation.getMedium().getId());
+                inProgressConsultationData.addProperty("medium_nom", inProgressConsultation.getMedium().getDenomination());
+                inProgressConsultationData.addProperty("clientId", inProgressConsultation.getClient().getId());
+                Client client = inProgressConsultation.getClient();
+                inProgressConsultationData.addProperty("client_nom", client.getFirstName() + inProgressConsultation.getClient().getLastName());
+                inProgressConsultationData.addProperty("clientZodiac", client.getZodiacSign());
+                inProgressConsultationData.addProperty("clientChineeseAstral", client.getChineseAstroSign());
+                inProgressConsultationData.addProperty("clientColor", client.getColor());
+                inProgressConsultationData.addProperty("clientTotem", client.getTotemAnimal());
+            }
+
             pendingConsult.addProperty("isPending", isPending);
             container.add("pendingOrInProgressConsultation", pendingConsult);
+            container.add("inProgressConsultation", inProgressConsultationData);
 
             JsonObject histoConsult = new JsonObject(); // Objet histoConsult
             List<Consultation> consultations = (List<Consultation>) request.getAttribute("historiqueConsultation"); // recuperation de l'attribut

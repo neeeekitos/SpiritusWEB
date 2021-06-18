@@ -54,6 +54,9 @@
 
             data_tab = $("<td></td>");
             data_tab.text(pendingConsult.status);
+
+            localStorage.setItem("clientOfCurrentConsultationId", cons.client_ID);
+
         }
         line.append(data_tab);
         $("#pendingInProgressConsult tbody").append(line);
@@ -89,6 +92,7 @@
                 data_tab = $("<td></td>");
                 data_tab.text(cons.comment);
                 line.append(data_tab);
+
 
                 $("#historiqueConsult tbody").append(line);
             })

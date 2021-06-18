@@ -18,7 +18,7 @@
                 love: 1,
                 health: 2,
                 job: 3,
-                clientId: 151
+                clientId: localStorage.getItem("currentConsultationClientId")
             },
             dataType: 'json',
             success: function(data, textStatus, xhr) {
@@ -63,6 +63,27 @@
             if ($("#incdec3 input").val() > 1)
                 $("#incdec3 input").val(parseInt($("#incdec3 input").val())-1);
         });
+
+
+        $.ajax({
+            url: 'ActionServlet',
+            method: 'GET',
+            data:{
+                todo:'getEmployeeHomePageInfos'
+            },
+            dataType:'json'
+        }).done(function(data) {
+            console.log("the request data");
+            console.log(data);
+            const inProgressConsultation = data.inProgressConsultation;
+            $("#zodiacSign").text(inProgressConsultation.clientZodiac);
+            $("#chineeseAstralSign").text(inProgressConsultation.clientChineeseAstral);
+            $("#luckyColor").text(inProgressConsultation.clientColor);
+            $("#totemAnimal").text(inProgressConsultation.clientTotem);
+            const imageUrl = "images/zodiac/" + inProgressConsultation.clientZodiac + ".png"
+            $("#zodiacImage").attr("src", imageUrl);
+            localStorage.setItem("currentConsultationClientId", inProgressConsultation.clientId);
+        })
 
     });
 
