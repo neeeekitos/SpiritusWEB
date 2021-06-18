@@ -20,6 +20,17 @@
                 );
             }
 
+            if (window.location.pathname == "/SpiritusWEB/DashEmployee.html") {
+                $("#home-buttons").append(
+                    "   <a id='stats' class='btn btn-secondary btn-margin-left' href='metrics.html' role='button'>Statistiques</a>"
+                );
+            }
+            if (window.location.pathname == "/SpiritusWEB/metrics.html") {
+                $("#home-buttons").append(
+                    "   <a id='dashboard' class='btn btn-secondary btn-margin-left' href='DashEmployee.html' role='button'>Dashboard</a>"
+                );
+            }
+
 
         } else {
             $('#signout-button').remove();
