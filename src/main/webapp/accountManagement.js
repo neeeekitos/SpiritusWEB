@@ -3,15 +3,19 @@
     namespace.updateAccountState = () => {
         console.log("PATH NAME : " + window.location.pathname);
         if (localStorage.getItem('status') != null) {
+            const homePage = localStorage.getItem("userType") === "client" ? "client.html" : "DashEmployee.html";
             $('#signup-button').remove();
             $('#signin-button').remove();
             $("#account-management").append(
                 "<a id='signout-button' class='btn btn-secondary btn-margin-left' role='button' \n" +
                 "href='clientProfile.html'>Modifier le profil</a>"
-            )
+            );
             $("#account-management").append(
                 "<a id='signout-button' class='btn btn-secondary btn-margin-left' role='button' \n" +
                 "onclick='SpiritusAccount.disconnect();return false;'>Se déconnecter</a>"
+            );
+            $("#home-buttons").append(
+                "   <a id='clientHome' class='btn btn-secondary btn-margin-left' href='" + homePage + "' role='button'>Profil</a>"
             );
 
         } else {
@@ -87,8 +91,10 @@
                     var user = data.user;
                     if (user === "client") {
                         window.location = './client.html';
+                        localStorage.setItem("userType", "client");
                     } else if (user === "employee") {
                         window.location = './DashEmployee.html';
+                        localStorage.setItem("userType", "employee");
                     }
                 }
             },
