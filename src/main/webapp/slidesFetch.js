@@ -32,7 +32,7 @@
                             '    <div class="content">\n' +
                             '        <p class="title" data-swiper-parallax="-30%" data-swiper-parallax-scale=".7">' + Object.values(data)[i].denomination + '</p>\n' +
                             '        <span class="caption" data-swiper-parallax="-20%">' + Object.values(data)[i].description + '<br><br>Nombre de consultations : ' + Object.values(data)[i].nbConsultations + '</span>\n' +
-                            '    <button class="btn bg-dark text-white" data-idmedium='+ Object.values(data)[i].idMedium + ' onclick="SpiritusSlides.requestConsultation($(this).attr(\'data-idmedium\'))">Demander une consultation</button>' +
+                            '    <br><br><button class="btn bg-dark text-white" data-idmedium='+ Object.values(data)[i].idMedium + ' onclick="SpiritusSlides.requestConsultation($(this).attr(\'data-idmedium\'))">Demander une consultation</button>' +
                             '    </div>\n' +
                             '</div>';
 
@@ -108,11 +108,10 @@
                     alert("Demande de consultation est en cours");
                     window.location = './client.html';
 
-                } else
-                    if (xhr.status === 403) {
+                } else if (xhr.status === 403) {
                         alert("Vous êtes pas connécté. Redirection...");
                         window.location = './login.html';
-                    }
+                }
             }
         });
     }

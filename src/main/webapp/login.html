@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <!-- Librairie Javascript: jQuery (v3.4.1) -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>
         <script src="./accountManagement.js"></script>
         <script>
             $(function(){
@@ -15,24 +16,15 @@
         </script>
 
     </head>
-    <body>
+    <body style="background: #a3a3a3;">
     <div id="navbar-custom"></div>
-
-        <h1>Connexion</h1>
-
-
-
-
-        <!-- Lien vers l'accueil -->
-        <p id="liens"><a href="index.html">Retour à la page d'Accueil</a></p>
-
-
-
-
+    <canvas id="waves"></canvas>
             <div class="modal-dialog" role="document">
+                <p id="notification"></p>
+
                 <div class="modal-content">
                     <div class="modal-header text-center">
-                        <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+                        <h4 class="modal-title w-100 font-weight-bold">Connexion</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -40,23 +32,155 @@
                     <div class="modal-body mx-3">
                         <div class="md-form mb-5">
                             <i class="fas fa-envelope prefix grey-text"></i>
+                            <label data-error="wrong" data-success="right" for="champ-login">Mail</label>
                             <input type="email" id="champ-login" class="form-control validate">
-                            <label data-error="wrong" data-success="right" for="champ-login">Your email</label>
                         </div>
 
                         <div class="md-form mb-4">
                             <i class="fas fa-lock prefix grey-text"></i>
+                            <label data-error="wrong" data-success="right" for="champ-password">Mot de passe</label>
                             <input type="password" id="champ-password" class="form-control validate">
-                            <label data-error="wrong" data-success="right" for="champ-password">Your password</label>
                         </div>
 
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
                         <button id="bouton-connexion" class="btn btn-default" onclick='SpiritusAccount.connect()'>Connexion</button>
-                        <p id="notification">Veuillez saisir votre identifiant (adresse mail) et votre mot de passe.</p>
-
                     </div>
                 </div>
             </div>
+    <script>
+        // *************************************
+        //
+        //  Original from Isuttell and
+        //  I modified some part for gradient effect
+        //  Forked Repo: https://github.com/cjies/sine-waves/
+        //
+        // *************************************
+
+        $(document).ready( () => {
+
+            var SEPARATION = 40, AMOUNTX = 130, AMOUNTY = 35;
+
+            var container;
+            var camera, scene, renderer;
+
+
+            if (window.WebGLRenderingContext){
+                renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            }
+            else {
+                renderer = new THREE.CanvasRenderer();
+            }
+
+
+            var particles, particle, count = 0;
+
+            var windowHalfX = window.innerWidth / 2;
+            var windowHalfY = window.innerHeight / 2;
+
+            init();
+            animate();
+
+            function init() {
+
+                container = document.createElement( 'div' );
+                document.body.appendChild( container );
+                if(container) {
+                    container.className += container.className ? ' waves' : 'waves';
+                }
+
+                camera = new THREE.PerspectiveCamera( 120, window.innerWidth / window.innerHeight, 1, 10000 );
+                camera.position.y = 200; //changes how far back you can see i.e the particles towards horizon
+                camera.position.z = 350; //This is how close or far the particles are seen
+
+
+                camera.rotation.x = 0.45;
+
+                scene = new THREE.Scene();
+
+                particles = new Array();
+
+                var PI2 = Math.PI * 2;
+                var material = new THREE.SpriteCanvasMaterial( {
+
+                    color: 0xEE574B, //changes color of particles
+                    program: function ( context ) {
+
+                        context.beginPath();
+                        context.arc( 0, 0, 0.1, 0, PI2, true );
+                        context.fill();
+
+                    }
+
+                } );
+
+                var i = 0;
+
+                for ( var ix = 0; ix < AMOUNTX; ix ++ ) {
+
+                    for ( var iy = 0; iy < AMOUNTY; iy ++ ) {
+
+                        particle = particles[ i ++ ] = new THREE.Sprite( material );
+                        particle.position.x = ix * SEPARATION - ( ( AMOUNTX * SEPARATION ) / 2 );
+                        particle.position.z = iy * SEPARATION - ( ( AMOUNTY * SEPARATION ) - 10 );
+                        scene.add( particle );
+
+                    }
+
+                }
+
+                renderer = new THREE.CanvasRenderer();
+                renderer.setSize( window.innerWidth, window.innerHeight );
+                renderer.setClearColor( 0x090a11, 1);
+                container.appendChild( renderer.domElement );
+
+                window.addEventListener( 'resize', onWindowResize, false );
+
+            }
+
+            function onWindowResize() {
+
+                windowHalfX = window.innerWidth / 2;
+                windowHalfY = window.innerHeight / 2;
+
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+
+                renderer.setSize( window.innerWidth, window.innerHeight );
+
+            }
+
+            function animate() {
+
+                requestAnimationFrame( animate );
+
+                render();
+
+            }
+
+            function render() {
+
+                var i = 0;
+
+                for ( var ix = 0; ix < AMOUNTX; ix ++ ) {
+
+                    for ( var iy = 0; iy < AMOUNTY; iy ++ ) {
+
+                        particle = particles[ i++ ];
+                        particle.position.y = ( Math.cos( ( ix + count ) * 0.5 ) * 20 ) + ( Math.cos( ( iy + count ) * 0.5 ) * 20 );
+                        particle.scale.x = particle.scale.y = ( Math.cos( ( ix + count ) * 0.3 ) + 2 ) * 4 + ( Math.cos( ( iy + count ) * 0.5 ) + 1 ) * 4;
+
+                    }
+
+                }
+
+                renderer.render( scene, camera );
+
+                // This increases or decreases speed
+                count += 0.1;
+
+            }
+        });
+    </script>
     </body>
 </html>

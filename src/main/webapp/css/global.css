@@ -43,3 +43,12 @@
     border-radius: 50%;
     content: " ";
 }
+
+
+/* wave animation */
+canvas{
+    position: absolute;
+    top:0;
+    left:0;
+    z-index:-1;
+}
