@@ -27,13 +27,15 @@
                     nbMediums = Object.keys(data).length;
                     console.log(nbMediums);
                     for (i = 0; i < nbMediums; i++) {
-                        imgList += '<div class="swiper-slide" style="background-image:url(images/im' + (i+1) + '.jpeg)">\n' +
+                        imgList += '<div id="slide" class="swiper-slide" style="background-image:url(images/im' + (i+1) + '.jpeg)">\n' +
                             '    <img src="images/im' + (i+1) + '.jpeg" class="entity-img" />\n' +
                             '    <div class="content">\n' +
                             '        <p class="title" data-swiper-parallax="-30%" data-swiper-parallax-scale=".7">' + Object.values(data)[i].denomination + '</p>\n' +
                             '        <span class="caption" data-swiper-parallax="-20%">' + Object.values(data)[i].description + '<br><br>Nombre de consultations : ' + Object.values(data)[i].nbConsultations + '</span>\n' +
+                            '    <button class="btn" data-idmedium='+ Object.values(data)[i].idMedium + ' onclick="SpiritusSlides.requestConsultation($(this).attr(\'data-idmedium\'))">Demander une consultation</button>' +
                             '    </div>\n' +
                             '</div>';
+
                     }
                     $('#dyn-swiper').append(imgList);
 
@@ -84,6 +86,32 @@
                     mySwiper.init();
 
                 }
+            }
+        });
+    }
+
+    namespace.requestConsultation = (mediumId) => {
+        console.log("requestin consultation with mediumid = " + mediumId);
+        // adding on click action
+
+        $.ajax({
+            url: './ActionServlet',
+            method: 'POST',
+            data: {
+                todo: 'requestConsultation',
+                mediumId: mediumId
+            },
+            dataType: 'json',
+            complete: function (xhr, textStatus) {
+                console.log(xhr.status);
+                if (xhr.status === 200) {
+                    alert("Demande de consultation est en cours");
+                    window.location = './clientProfile.html';
+
+                } else
+                    alert("Erreur dans la demande de consultation");
+                    if (xhr.status === 403)
+                        window.location = './login.html';
             }
         });
     }
