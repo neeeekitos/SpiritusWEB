@@ -93,7 +93,7 @@ public class EmployeeSerialization extends Serialization {
                     consultationObject.addProperty("medium_ID", c.getMedium().getId());
                     consultationObject.addProperty("medium_nom", c.getMedium().getDenomination());
                     consultationObject.addProperty("client_ID", c.getClient().getId());
-                    consultationObject.addProperty("client_nom", c.getClient().getFirstName() + c.getClient().getLastName());
+                    consultationObject.addProperty("client_nom", c.getClient().getFirstName() +" " + c.getClient().getLastName());
                     HistoriqueArray.add(consultationObject);
                 }
                 container.add("Historique", HistoriqueArray);
