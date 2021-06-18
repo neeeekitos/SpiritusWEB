@@ -104,9 +104,9 @@
             dataType: 'json',
             complete: function (xhr, textStatus) {
                 console.log(xhr.status);
-                if (xhr.status === 200) {
+                if (xhr.status === 200 || xhr.status === 409) {
                     alert("Demande de consultation est en cours");
-                    window.location = './clientProfile.html';
+                    window.location = './client.html';
 
                 } else
                     alert("Erreur dans la demande de consultation");
