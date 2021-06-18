@@ -14,9 +14,12 @@
                 "<a id='signout-button' class='btn btn-secondary btn-margin-left' role='button' \n" +
                 "onclick='SpiritusAccount.disconnect();return false;'>Se déconnecter</a>"
             );
-            $("#home-buttons").append(
-                "   <a id='clientHome' class='btn btn-secondary btn-margin-left' href='" + homePage + "' role='button'>Accueil Client</a>"
-            );
+            if(localStorage.getItem("userType") === "client"){
+                $("#home-buttons").append(
+                    "   <a id='clientHome' class='btn btn-secondary btn-margin-left' href='" + homePage + "' role='button'>Accueil Client</a>"
+                );
+            }
+
 
         } else {
             $('#signout-button').remove();
