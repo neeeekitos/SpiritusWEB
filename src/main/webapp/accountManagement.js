@@ -32,7 +32,7 @@
             }
 
 
-        }z
+        }
     };
 
     namespace.disconnect = () => { // Fonction appelée lors du clic sur le bouton
